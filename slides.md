@@ -310,8 +310,8 @@ How to interpret model evaluation scores — and what the July 2026 frontier com
 <div class="pipeline">
   <div class="step">
     <span class="step-n">01 · The questions</span>
-    <p class="step-h">Contamination can't be disproved</p>
-    <p class="step-b">A model post-trained on the same <em>distribution</em> never saw the test set — and scores as if it had. Unfalsifiable from outside. Every public benchmark is also scraped from the day it ships.</p>
+    <p class="step-h">Coaching looks like ability</p>
+    <p class="step-b">Like a student whose tutor drilled thousands of practice papers in exactly this style. They <em>never saw the real exam</em> — and can say so honestly. The score still goes up. From outside, coaching and real ability look the same.</p>
   </div>
   <div class="step">
     <span class="step-n">02 · The answer key</span>
@@ -332,7 +332,7 @@ How to interpret model evaluation scores — and what the July 2026 frontier com
 
 <div class="callout" style="margin-top:16px">
   <p class="callout-l">What survives</p>
-  <p>Only benchmarks with a <strong>private held-out set</strong> resist most of this — ARC-AGI-3, AutomationBench, Legal Agent Benchmark. Everything else is being eroded from the day it publishes, regardless of how well it was built.</p>
+  <p>And any published benchmark gets scraped into the next model's training data — so it wears out with age, however well it was built. Only the ones holding a <strong>private set of questions back</strong> resist that: ARC-AGI-3, AutomationBench, Legal Agent Benchmark.</p>
 </div>
 
 <p class="tagline" style="margin-top:14px;font-size:19px;max-width:none">None of this makes benchmarks useless. It makes them instruments with an error bar — and the error bar is never printed on the table.</p>
