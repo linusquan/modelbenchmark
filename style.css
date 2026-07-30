@@ -115,6 +115,14 @@
 .slidev-layout td:first-child{color:var(--ink);font-weight:600;white-space:nowrap}
 .slidev-layout tr{background:transparent}
 
+.table-tight{font-size:10.5px;margin-top:10px}
+.table-tight th{padding:0 10px 4px 0;font-size:8.5px}
+.table-tight td{padding:4.5px 10px 4.5px 0;line-height:1.3}
+.table-tight td:first-child{white-space:normal}
+.v-ok{color:#4B6B57;font-weight:600}
+.v-warn{color:var(--clay-deep);font-weight:600}
+.v-no{color:var(--ink-soft);font-weight:600}
+
 .split{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:start}
 .split-fig{display:grid;grid-template-columns:270px 1fr;gap:40px;align-items:center}
 
