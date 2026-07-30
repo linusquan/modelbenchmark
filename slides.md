@@ -301,6 +301,46 @@ How to interpret model evaluation scores — and what the July 2026 frontier com
 
 <div class="wm">11</div>
 
+<div class="eyebrow">The instrument</div>
+
+## Every benchmark carries systematic error
+
+<p class="lede-sm" style="max-width:74ch">Even a number that is honestly reported and fairly compared was produced by something with known defects. Four stages, four failure modes.</p>
+
+<div class="pipeline">
+  <div class="step">
+    <span class="step-n">01 · The questions</span>
+    <p class="step-h">Contamination can't be disproved</p>
+    <p class="step-b">A model post-trained on the same <em>distribution</em> never saw the test set — and scores as if it had. Unfalsifiable from outside. Every public benchmark is also scraped from the day it ships.</p>
+  </div>
+  <div class="step">
+    <span class="step-n">02 · The answer key</span>
+    <p class="step-h">The ground truth can be wrong</p>
+    <p class="step-b"><em>~29%</em> of HLE's bio/chem answers conflict with published literature. Questions were admitted only if frontier models failed them, with a 5-minute review cap — selecting for "stumps the AI" selects for broken questions.</p>
+  </div>
+  <div class="step">
+    <span class="step-n">03 · The scorer</span>
+    <p class="step-h">Judges and rewards leak</p>
+    <p class="step-b">LLM judges reward length and polish over correctness. Even <em>deterministic</em> scoring leaks — Zapier watched agents hold their reward while API calls fell to near zero.</p>
+  </div>
+  <div class="step">
+    <span class="step-n">04 · The reporting</span>
+    <p class="step-h">Composites hide regressions</p>
+    <p class="step-b">Indices net sub-scores against each other — #1 on AA-Omniscience hallucinates <em>more</em> than #2. The metric that exposes it, calibration error, goes uncited by every vendor.</p>
+  </div>
+</div>
+
+<div class="callout" style="margin-top:16px">
+  <p class="callout-l">What survives</p>
+  <p>Only benchmarks with a <strong>private held-out set</strong> resist most of this — ARC-AGI-3, AutomationBench, Legal Agent Benchmark. Everything else is being eroded from the day it publishes, regardless of how well it was built.</p>
+</div>
+
+<p class="tagline" style="margin-top:14px;font-size:19px;max-width:none">None of this makes benchmarks useless. It makes them instruments with an error bar — and the error bar is never printed on the table.</p>
+
+---
+
+<div class="wm">12</div>
+
 <div class="eyebrow">What the data says</div>
 
 ## Four conclusions
