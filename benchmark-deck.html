@@ -1,0 +1,731 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reading the Benchmark Table</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ---------- tokens ---------- */
+:root{
+  --paper:#F0EEE6;
+  --paper-lift:#F7F5EF;
+  --ink:#191917;
+  --ink-mid:#4A4843;
+  --ink-soft:#7A776F;
+  --rule:#D6D2C4;
+  --clay:#CC785C;
+  --clay-deep:#A85940;
+  --slate:#5F6B66;
+
+  --display:"Fraunces",Georgia,serif;
+  --sans:"Instrument Sans",-apple-system,sans-serif;
+
+  --gutter:clamp(1.75rem,6vw,7rem);
+  --measure:74rem;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+html,body{height:100%}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:clamp(15px,1.05vw,18px);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  overflow:hidden;
+}
+
+/* paper grain */
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:90;
+  opacity:.32;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+}
+
+/* ---------- chrome ---------- */
+.progress{
+  position:fixed;top:0;left:0;height:2px;background:var(--clay);
+  z-index:80;transition:width .5s cubic-bezier(.2,.7,.2,1);
+}
+.chrome{
+  position:fixed;bottom:0;left:0;right:0;z-index:70;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 var(--gutter) clamp(1.1rem,2.4vh,2rem);
+  pointer-events:none;
+}
+.brand{
+  font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--ink-soft);font-weight:500;
+}
+.nav{display:flex;align-items:center;gap:.55rem;pointer-events:auto}
+.dots{display:flex;gap:.4rem;margin-right:.7rem}
+.dot{
+  width:5px;height:5px;border-radius:50%;background:var(--rule);
+  border:0;padding:0;cursor:pointer;transition:background .25s,transform .25s;
+}
+.dot:hover{background:var(--ink-soft)}
+.dot[aria-current="true"]{background:var(--clay);transform:scale(1.5)}
+.arrow{
+  width:2.2rem;height:2.2rem;border:1px solid var(--rule);background:transparent;
+  border-radius:50%;cursor:pointer;color:var(--ink-mid);
+  display:grid;place-items:center;font-size:.85rem;
+  transition:border-color .2s,color .2s,background .2s;
+}
+.arrow:hover:not(:disabled){border-color:var(--clay);color:var(--clay);background:var(--paper-lift)}
+.arrow:disabled{opacity:.28;cursor:default}
+
+/* ---------- slide frame ---------- */
+.deck{height:100%;position:relative}
+.slide{
+  position:absolute;inset:0;
+  display:none;
+  padding:clamp(3rem,7vh,5.5rem) var(--gutter) clamp(4.5rem,10vh,6.5rem);
+  overflow-y:auto;
+}
+.slide[data-active]{display:flex;flex-direction:column;justify-content:center}
+.inner{width:100%;max-width:var(--measure);margin:0 auto}
+
+/* watermark numeral */
+.slide::before{
+  content:attr(data-num);
+  position:absolute;top:clamp(2rem,5vh,3.6rem);right:var(--gutter);
+  font-family:var(--display);font-size:clamp(3.2rem,7vw,6rem);
+  font-weight:300;color:var(--ink);opacity:.055;line-height:1;
+  font-variation-settings:"SOFT" 0,"WONK" 1;pointer-events:none;
+}
+
+/* staggered entrance */
+.slide[data-active] .rise{animation:rise .68s cubic-bezier(.19,.86,.3,1) backwards}
+.slide[data-active] .rise:nth-child(1){animation-delay:.02s}
+.slide[data-active] .rise:nth-child(2){animation-delay:.09s}
+.slide[data-active] .rise:nth-child(3){animation-delay:.16s}
+.slide[data-active] .rise:nth-child(4){animation-delay:.23s}
+.slide[data-active] .rise:nth-child(5){animation-delay:.30s}
+.slide[data-active] .rise:nth-child(6){animation-delay:.37s}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .slide[data-active] .rise{animation:none}
+  .progress{transition:none}
+}
+
+/* ---------- type ---------- */
+.eyebrow{
+  display:flex;align-items:center;gap:.6rem;
+  font-size:.68rem;letter-spacing:.19em;text-transform:uppercase;
+  color:var(--clay-deep);font-weight:600;margin-bottom:1.6rem;
+}
+.eyebrow::before{content:"";width:6px;height:6px;background:var(--clay);flex:none}
+
+h1{
+  font-family:var(--display);font-weight:400;
+  font-size:clamp(2.6rem,6.6vw,5.4rem);line-height:1.02;
+  letter-spacing:-.022em;font-variation-settings:"SOFT" 0,"WONK" 1;
+}
+h2{
+  font-family:var(--display);font-weight:400;
+  font-size:clamp(2rem,4.4vw,3.5rem);line-height:1.06;
+  letter-spacing:-.018em;font-variation-settings:"SOFT" 0,"WONK" 1;
+  margin-bottom:1.5rem;
+}
+.lede{
+  font-size:clamp(1rem,1.55vw,1.35rem);line-height:1.5;
+  color:var(--ink-mid);max-width:46ch;
+}
+.tagline{
+  font-family:var(--display);font-style:italic;font-weight:300;
+  font-size:clamp(1.15rem,2vw,1.7rem);line-height:1.35;
+  color:var(--ink-mid);max-width:40ch;
+}
+.foot{
+  margin-top:auto;padding-top:2.4rem;font-size:.78rem;color:var(--ink-soft);
+  border-top:1px solid var(--rule);
+}
+strong{font-weight:600;color:var(--ink)}
+em.k{font-style:normal;color:var(--clay-deep);font-weight:600}
+
+/* ---------- components ---------- */
+.hr{height:1px;background:var(--rule);border:0;margin:2.2rem 0}
+
+.rules{display:grid;gap:1.5rem;margin-top:.6rem}
+@media(min-width:56rem){.rules{grid-template-columns:1fr 1fr;gap:2.6rem}}
+.rule-card{border-top:2px solid var(--ink);padding-top:1.1rem}
+.rule-card.alt{border-top-color:var(--clay)}
+.rule-n{
+  font-family:var(--display);font-size:.8rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-soft);margin-bottom:.5rem;display:block;
+}
+.rule-h{font-size:clamp(1.1rem,1.9vw,1.5rem);font-weight:600;margin-bottom:.6rem;letter-spacing:-.01em}
+.rule-b{color:var(--ink-mid);font-size:.95rem;max-width:42ch}
+
+.paradigms{display:grid;gap:0;margin-top:.4rem;border-top:1px solid var(--rule)}
+.para{
+  display:grid;gap:.3rem 1.6rem;padding:1.15rem 0;
+  border-bottom:1px solid var(--rule);align-items:baseline;
+}
+@media(min-width:52rem){.para{grid-template-columns:2.2rem 13rem 1fr auto}}
+.para-n{font-family:var(--display);color:var(--clay);font-size:1.1rem}
+.para-t{font-weight:600;letter-spacing:-.005em}
+.para-d{color:var(--ink-mid);font-size:.95rem}
+.para-w{font-size:.8rem;color:var(--ink-soft);letter-spacing:.02em}
+
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+thead th{
+  text-align:left;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--ink-soft);font-weight:600;padding:0 1.4rem .75rem 0;
+  border-bottom:1px solid var(--ink);
+}
+tbody td{padding:1.05rem 1.4rem 1.05rem 0;border-bottom:1px solid var(--rule);vertical-align:top;color:var(--ink-mid)}
+tbody td:first-child{color:var(--ink);font-weight:600;white-space:nowrap}
+.tbl-wrap{overflow-x:auto}
+
+.figure{
+  margin-top:1.5rem;background:var(--paper-lift);border:1px solid var(--rule);
+  padding:.7rem;display:flex;justify-content:center;
+}
+.figure img{display:block;width:100%;height:auto}
+.cap{margin-top:.85rem;font-size:.78rem;color:var(--ink-soft);max-width:62ch}
+
+/* table-figure slide: image is the hero, constrain by height */
+.split--figure{align-items:center}
+@media(min-width:60rem){
+  .split--figure{grid-template-columns:19rem 1fr;gap:3rem}
+}
+.figure--tall{margin-top:0}
+.figure--tall img{width:auto;max-width:100%;max-height:72vh;object-fit:contain}
+
+.split{display:grid;gap:2rem;align-items:start}
+@media(min-width:60rem){.split{grid-template-columns:1.05fr .95fr;gap:3.4rem}}
+
+.formula{
+  font-family:var(--display);font-size:clamp(1.05rem,1.9vw,1.5rem);
+  background:var(--paper-lift);border-left:2px solid var(--clay);
+  padding:1.1rem 1.35rem;margin:1.4rem 0;color:var(--ink);
+  display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;
+}
+.formula--sm{font-size:clamp(.92rem,1.3vw,1.1rem);padding:.75rem 1rem;margin:0}
+
+/* pipeline */
+.pipeline{display:grid;gap:1.35rem;margin-top:1.7rem}
+@media(min-width:62rem){.pipeline{grid-template-columns:repeat(4,1fr);gap:1.4rem}}
+.step{border-top:1px solid var(--rule);padding-top:.85rem}
+.step-n{
+  display:block;font-size:.65rem;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--clay-deep);font-weight:600;margin-bottom:.45rem;
+}
+.step-h{font-weight:600;font-size:.97rem;line-height:1.28;margin-bottom:.4rem;letter-spacing:-.006em}
+.step-b{font-size:.83rem;line-height:1.5;color:var(--ink-mid)}
+.step-b em{font-style:normal;color:var(--clay-deep);font-weight:600}
+.frac{display:inline-flex;flex-direction:column;text-align:center;vertical-align:middle;margin:0 .1rem}
+.frac .num{border-bottom:1px solid var(--ink);padding:0 .45rem .12rem}
+.frac .den{padding:.12rem .45rem 0}
+sup{font-size:.62em;vertical-align:super}
+.formula sup{font-size:.6em;position:relative;top:-.48em;vertical-align:baseline;letter-spacing:.01em}
+
+.stats{display:flex;flex-wrap:wrap;gap:2.4rem;margin-top:1.6rem}
+.stat{min-width:7rem}
+.stat-v{
+  font-family:var(--display);font-size:clamp(2rem,4.2vw,3.2rem);line-height:1;
+  font-weight:400;letter-spacing:-.02em;font-variation-settings:"SOFT" 0,"WONK" 1;
+}
+.stat-v.clay{color:var(--clay-deep)}
+.stat-l{font-size:.76rem;color:var(--ink-soft);margin-top:.5rem;letter-spacing:.03em;max-width:16ch}
+
+.callout{
+  margin-top:1.6rem;padding:1.15rem 1.35rem;
+  background:rgba(204,120,92,.075);border:1px solid rgba(204,120,92,.28);
+}
+.callout-l{
+  font-size:.66rem;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--clay-deep);font-weight:600;margin-bottom:.5rem;
+}
+.callout p{font-size:.95rem;color:var(--ink-mid)}
+
+/* conclusions */
+.concl{display:grid;gap:0;border-top:1px solid var(--rule);margin-top:.3rem}
+.c-item{
+  display:grid;gap:.3rem 1.5rem;padding:.85rem 0;border-bottom:1px solid var(--rule);
+}
+@media(min-width:54rem){.c-item{grid-template-columns:1.8rem 20rem 1fr;align-items:baseline}}
+.c-k{font-family:var(--display);color:var(--clay);font-size:1.05rem}
+.c-h{font-weight:600;letter-spacing:-.008em;line-height:1.35}
+.c-b{color:var(--ink-mid);font-size:.9rem;line-height:1.5}
+.kicker{
+  margin-top:1.4rem;padding-top:1.2rem;border-top:2px solid var(--ink);
+}
+.kicker-q{
+  font-family:var(--display);font-size:clamp(1.35rem,2.9vw,2.3rem);
+  line-height:1.18;letter-spacing:-.016em;font-variation-settings:"SOFT" 0,"WONK" 1;
+  max-width:24ch;
+}
+.kicker-b{margin-top:.85rem;color:var(--ink-mid);font-size:.92rem;max-width:60ch}
+
+.hint{
+  position:fixed;bottom:clamp(1.1rem,2.4vh,2rem);left:50%;transform:translateX(-50%);
+  font-size:.7rem;color:var(--ink-soft);letter-spacing:.09em;z-index:71;
+  transition:opacity .6s;pointer-events:none;
+}
+.hint.gone{opacity:0}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<main class="deck" id="deck">
+
+  <!-- 01 ────────────────────────────────── -->
+  <section class="slide" data-num="01">
+    <div class="inner">
+      <p class="eyebrow rise">A reading guide</p>
+      <h1 class="rise">Reading the<br>Benchmark Table</h1>
+      <div class="rise" style="margin-top:1.9rem">
+        <p class="lede">How to interpret model evaluation scores — and what the July 2026 frontier comparison actually says once you know what each number means.</p>
+      </div>
+      <div class="rise foot">
+        Source table: Claude Opus 5 System Card, 24 July 2026
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 ────────────────────────────────── -->
+  <section class="slide" data-num="02">
+    <div class="inner">
+      <div class="split split--figure rise">
+        <div>
+          <p class="eyebrow">The artifact</p>
+          <h2 style="margin-bottom:1.1rem">One table,<br>twelve rulers</h2>
+          <p class="lede" style="font-size:1rem">Every row is scored by a different system. That single fact is the source of nearly every misreading.</p>
+        </div>
+        <div class="figure figure--tall">
+          <img src="public/benchmark-table.png" alt="Benchmark comparison table: Opus 5, Fable 5, Opus 4.8, GPT-5.6 Sol">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 ────────────────────────────────── -->
+  <section class="slide" data-num="03">
+    <div class="inner">
+      <p class="eyebrow rise">Verification</p>
+      <h2 class="rise" style="margin-bottom:.5rem;font-size:clamp(1.7rem,3.4vw,2.6rem)">Cross-checking the table</h2>
+      <p class="lede rise" style="font-size:.82rem;max-width:70ch">Anthropic ran GPT-5.6 Sol's numbers itself. Where OpenAI has published the same benchmark independently, here's what holds up.</p>
+      <div class="rise tbl-wrap" style="margin-top:.5rem">
+        <table style="font-size:.62rem">
+          <thead>
+            <tr><th style="padding-bottom:.4rem">Row</th><th style="padding-bottom:.4rem">Anthropic reports (Sol)</th><th style="padding-bottom:.4rem">Checked against</th><th style="padding-bottom:.4rem">Verdict</th></tr>
+          </thead>
+          <tbody>
+            <tr><td style="padding:.4rem 1.2rem .4rem 0">DeepSWE v1.1</td><td style="padding:.4rem 1.2rem .4rem 0">72.7%</td><td style="padding:.4rem 1.2rem .4rem 0">OpenAI: 72.7%</td><td style="padding:.4rem 1.2rem .4rem 0;color:#4B6B57;font-weight:600">✓ matches</td></tr>
+            <tr><td style="padding:.4rem 1.2rem .4rem 0">BrowseComp</td><td style="padding:.4rem 1.2rem .4rem 0">90.4%</td><td style="padding:.4rem 1.2rem .4rem 0">OpenAI: 90.4% (92.2% Ultra)</td><td style="padding:.4rem 1.2rem .4rem 0;color:#4B6B57;font-weight:600">✓ matches</td></tr>
+            <tr><td style="padding:.4rem 1.2rem .4rem 0">OSWorld 2.0</td><td style="padding:.4rem 1.2rem .4rem 0">62.6%</td><td style="padding:.4rem 1.2rem .4rem 0">OpenAI: 62.6%</td><td style="padding:.4rem 1.2rem .4rem 0;color:#4B6B57;font-weight:600">✓ matches</td></tr>
+            <tr><td style="padding:.4rem 1.2rem .4rem 0">AutomationBench</td><td style="padding:.4rem 1.2rem .4rem 0">18.1%</td><td style="padding:.4rem 1.2rem .4rem 0">OpenAI: 18.1%</td><td style="padding:.4rem 1.2rem .4rem 0;color:#4B6B57;font-weight:600">✓ matches</td></tr>
+            <tr><td style="padding:.4rem 1.2rem .4rem 0">GDPval-AA v2</td><td style="padding:.4rem 1.2rem .4rem 0">1736</td><td style="padding:.4rem 1.2rem .4rem 0">AA's own leaderboard: 1736</td><td style="padding:.4rem 1.2rem .4rem 0;color:#4B6B57;font-weight:600">✓ matches — not OpenAI's own number, it's AA's</td></tr>
+            <tr><td style="padding:.4rem 1.2rem .4rem 0">HealthBench Pro</td><td style="padding:.4rem 1.2rem .4rem 0">60.5%</td><td style="padding:.4rem 1.2rem .4rem 0">OpenAI: 60.5%</td><td style="padding:.4rem 1.2rem .4rem 0;color:var(--clay-deep);font-weight:600">⚠ matches — OpenAI's footnote says not comparable</td></tr>
+            <tr><td style="padding:.4rem 1.2rem .4rem 0">ARC-AGI-3</td><td style="padding:.4rem 1.2rem .4rem 0">7.8%</td><td style="padding:.4rem 1.2rem .4rem 0">OpenAI: 7.78% (official harness)</td><td style="padding:.4rem 1.2rem .4rem 0;color:var(--clay-deep);font-weight:600">⚠ matches — a rival number appeared a day later, disputed¹</td></tr>
+            <tr><td style="padding:.4rem 1.2rem .4rem 0">Frontier-Bench / FrontierCode</td><td style="padding:.4rem 1.2rem .4rem 0">34.4% / 47.5%</td><td style="padding:.4rem 1.2rem .4rem 0">Not in OpenAI's table</td><td style="padding:.4rem 1.2rem .4rem 0;color:var(--ink-soft);font-weight:600">✕ no counterpart</td></tr>
+            <tr><td style="padding:.4rem 1.2rem .4rem 0">Legal Agent Benchmark</td><td style="padding:.4rem 1.2rem .4rem 0">2.5%</td><td style="padding:.4rem 1.2rem .4rem 0">Not published by OpenAI</td><td style="padding:.4rem 1.2rem .4rem 0;color:var(--ink-soft);font-weight:600">✕ no counterpart</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="rise callout" style="margin-top:.5rem;padding:.55rem .9rem">
+        <p class="callout-l" style="margin-bottom:.25rem;font-size:.6rem">Two things the table doesn't show</p>
+        <p style="font-size:.66rem;line-height:1.4"><strong>Selective generations:</strong> OpenAI's table skips Frontier-Bench, reporting Terminal-Bench 2.1 instead — Sol 88.8%, where it leads. Same lineage, each side picked the version that favours it. <strong>A row Anthropic left out:</strong> SWE-Bench Pro, where Anthropic wins by 15+pts (Opus 4.8 69.2%, Fable 5 ~80% vs. Sol 64.6%) — though OpenAI itself has flagged ~30% of that benchmark's tasks as broken.</p>
+      </div>
+      <p class="rise cap" style="margin-top:.35rem;max-width:none;font-size:.62rem">5 of 9 checkable rows are clean matches. Sources: OpenAI GPT-5.6 materials · Artificial Analysis GDPval-AA v2 leaderboard.</p>
+      <p class="rise cap" style="margin-top:.1rem;font-size:.56rem;max-width:none">¹ OpenAI, "How enabling two settings tripled our scores on the ARC-AGI-3 benchmark" (30 Jul 2026) — <a href="https://openai.com/index/how-two-settings-tripled-our-arc-agi-3-scores/" style="color:var(--clay-deep)">openai.com/index/how-two-settings-tripled-our-arc-agi-3-scores</a></p>
+    </div>
+  </section>
+
+  <!-- 04 ────────────────────────────────── -->
+  <section class="slide" data-num="04">
+    <div class="inner">
+      <p class="eyebrow rise">The two rules</p>
+      <h2 class="rise">Read down.<br>Never across.</h2>
+      <div class="rules rise">
+        <div class="rule-card">
+          <span class="rule-n">Rule one</span>
+          <p class="rule-h">Don't compare across categories.</p>
+          <p class="rule-b">43.3% on coding and 11.7% on legal are not on the same scale. The gap says nothing about relative ability — it says the two benchmarks were built to different specifications.</p>
+        </div>
+        <div class="rule-card alt">
+          <span class="rule-n">Rule two</span>
+          <p class="rule-h">Compare across models on one row — if the version held.</p>
+          <p class="rule-b">Same benchmark, different models is the one valid comparison. But ARC-AGI-3 changed its scoring in April 2026; scores do not cross that line.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 ────────────────────────────────── -->
+  <section class="slide" data-num="05">
+    <div class="inner">
+      <p class="eyebrow rise">Vocabulary</p>
+      <h2 class="rise">Three ways to earn a number</h2>
+      <div class="paradigms rise">
+        <div class="para">
+          <span class="para-n">1</span>
+          <span class="para-t">Binary pass / fail</span>
+          <span class="para-d">Run it. Did it work?</span>
+          <span class="para-w">Frontier-Bench · DeepSWE</span>
+        </div>
+        <div class="para">
+          <span class="para-n">2</span>
+          <span class="para-t">Efficiency ratio</span>
+          <span class="para-d">How many steps, against a human baseline?</span>
+          <span class="para-w">ARC-AGI-3</span>
+        </div>
+        <div class="para">
+          <span class="para-n">3</span>
+          <span class="para-t">Rubric</span>
+          <span class="para-d">Check a written list, item by item.</span>
+          <span class="para-w">FrontierCode · HealthBench · Legal Agent Bench</span>
+        </div>
+      </div>
+      <div class="rise callout">
+        <p class="callout-l">The trap</p>
+        <p>A rubric score and a pass rate are not the same kind of number. 53.4% on FrontierCode is an <strong>average rubric score</strong>; 68.8% on DeepSWE is a <strong>share of tasks solved</strong>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 ────────────────────────────────── -->
+  <section class="slide" data-num="06">
+    <div class="inner">
+      <p class="eyebrow rise">Category 01</p>
+      <h2 class="rise">Coding</h2>
+      <div class="rise tbl-wrap">
+        <table>
+          <thead>
+            <tr><th>Benchmark</th><th>Example task</th><th>Scored by</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Frontier-Bench</td>
+              <td>"The DB migration is broken — get <code>pytest</code> passing." Full shell access.</td>
+              <td>Harness re-runs the check itself. Binary, mean over 5 runs.</td>
+            </tr>
+            <tr>
+              <td>DeepSWE</td>
+              <td>"Add exponential-backoff retry: 1s/2s/4s/8s/16s, then fail." Written from scratch to resist contamination.</td>
+              <td>Hand-written test asserts real retry behaviour. Binary.</td>
+            </tr>
+            <tr>
+              <td>FrontierCode</td>
+              <td>"Fix a race condition in the job queue."</td>
+              <td><strong>Blockers</strong> (fixed · no regression · scoped) are gates — miss one and the task scores 0. Style and quality are LLM-reviewed and weighted in after.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="rise callout">
+        <p class="callout-l">The hidden variable</p>
+        <p>None of these test a bare model — they test a model <em class="k">plus a harness</em>. A tuned harness against a bare shell can move the same model by 10+ points.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 ────────────────────────────────── -->
+  <section class="slide" data-num="07">
+    <div class="inner">
+      <p class="eyebrow rise">Category 02</p>
+      <h2 class="rise">Novel problem-solving</h2>
+      <div class="split rise">
+        <div>
+          <p class="lede">No instructions, no tutorial. The model is dropped into a game and must infer the rules, the goal, and the win condition by acting.</p>
+          <div class="formula">
+            score = min(1.15, (human steps ÷ AI steps)<sup>2</sup>)
+          </div>
+          <p class="cap" style="margin-top:0">Squared — so being twice as slow as a human costs 75% of the points, not 50%. The baseline is the median first-time player.</p>
+          <div class="callout" style="margin-top:1.2rem">
+            <p class="callout-l">Opus 5 scores 30.2% overall — which means what?</p>
+            <p style="font-size:.87rem">Averaged over 25 games, so it hides two failure modes. <strong>Cleared everything but took ~1.8× the human steps</strong> → (1÷1.8)² ≈ 31%. Or <strong>human-efficient but only ~30% of levels cleared</strong> → 30%. Reality is a blend.</p>
+          </div>
+          <div class="stats" style="margin-top:1.3rem">
+            <div class="stat">
+              <div class="stat-v">100<span style="font-size:.5em">%</span></div>
+              <div class="stat-l">Humans on task ls20, in 776 actions</div>
+            </div>
+            <div class="stat">
+              <div class="stat-v clay">5.36<span style="font-size:.5em">%</span></div>
+              <div class="stat-l">Opus 5 on that same task</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="figure" style="margin-top:0">
+            <img src="public/arc-agi-3.png" alt="ARC-AGI-3 task ls20 gameplay screen">
+          </div>
+          <p class="cap">ARC-AGI-3, task <strong>ls20</strong> — playable at arcprize.org. The only benchmark on the table that has not saturated.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 ────────────────────────────────── -->
+  <section class="slide" data-num="08">
+    <div class="inner">
+      <p class="eyebrow rise">Category 03</p>
+      <h2 class="rise" style="margin-bottom:.9rem">Knowledge work</h2>
+      <p class="lede rise" style="font-size:1rem">There is no score anywhere in this pipeline. Every number comes from one model's work being preferred over another's.</p>
+
+      <div class="pipeline rise">
+        <div class="step">
+          <span class="step-n">Step 01 · Source</span>
+          <p class="step-h">Real professional deliverables</p>
+          <p class="step-b">Tasks drawn from <em>44 occupations across 9 industries</em> — finance, healthcare, legal, engineering — written by practitioners averaging 14 years' experience.</p>
+        </div>
+        <div class="step">
+          <span class="step-n">Step 02 · Attempt</span>
+          <p class="step-h">The model does the job</p>
+          <p class="step-b">An agentic sandbox (Stirrup) with web search, code execution and a filesystem, up to <em>250 turns</em>. It ships real documents, slides and spreadsheets.</p>
+        </div>
+        <div class="step">
+          <span class="step-n">Step 03 · Judge</span>
+          <p class="step-h">Blind pairwise, one judge per matchup</p>
+          <p class="step-b">Two outputs for the <em>same task</em> are anonymised and set side by side. A judge picks a winner — sampled each time from a panel of three frontier LLMs.</p>
+        </div>
+        <div class="step">
+          <span class="step-n">Step 04 · Rating</span>
+          <p class="step-h">Fitted into an Elo scale</p>
+          <p class="step-b">Thousands of matchups are fitted with a Bradley–Terry model, then <em>anchored so human expert = 1000</em>. No ceiling.</p>
+        </div>
+      </div>
+
+      <div class="split rise" style="margin-top:1.9rem">
+        <div>
+          <div class="formula formula--sm">
+            P(win) =
+            <span class="frac">
+              <span class="num">1</span>
+              <span class="den">1 + 10<sup>−Δ⁄400</sup></span>
+            </span>
+          </div>
+          <p class="cap">Opus 5 scores <strong>1861</strong>. Against the 1000 anchor, Δ = 861 — roughly a <strong>99%</strong> win rate head-to-head against the human deliverable.</p>
+        </div>
+        <div>
+          <div class="callout" style="margin-top:0">
+            <p class="callout-l">Who is holding the ruler</p>
+            <p>The panel is <strong>GPT-5.5, Gemini 3.1 Pro and Claude Opus 4.8</strong> — so one judge comes from the same lab as the model topping this row. And LLM judges reliably prefer polished, well-structured writing over the terse, shorthand-heavy work real experts actually deliver.</p>
+          </div>
+        </div>
+      </div>
+      <p class="tagline rise" style="margin-top:1.5rem">1861 means “this looks like expert work to an LLM” — not “this replaces experts.”</p>
+    </div>
+  </section>
+
+  <!-- 09 ────────────────────────────────── -->
+  <section class="slide" data-num="09">
+    <div class="inner">
+      <p class="eyebrow rise">Category 04</p>
+      <h2 class="rise">Agentic search</h2>
+      <div class="rise">
+        <p class="lede">Answers that are fixed but genuinely hard to find — multi-round retrieval, then cross-verification.</p>
+        <div class="stats" style="margin-top:2.2rem">
+          <div class="stat">
+            <div class="stat-v clay">90.8<span style="font-size:.5em">%</span></div>
+            <div class="stat-l">Opus 5</div>
+          </div>
+          <div class="stat">
+            <div class="stat-v">90.4<span style="font-size:.5em">%</span></div>
+            <div class="stat-l">GPT-5.6 Sol</div>
+          </div>
+          <div class="stat">
+            <div class="stat-v">0.4<span style="font-size:.5em">pp</span></div>
+            <div class="stat-l">The entire gap</div>
+          </div>
+        </div>
+      </div>
+      <hr class="hr rise">
+      <p class="tagline rise">Past 90%, a benchmark stops separating models. Keep it to catch regressions — not to measure progress.</p>
+    </div>
+  </section>
+
+  <!-- 10 ────────────────────────────────── -->
+  <section class="slide" data-num="10">
+    <div class="inner">
+      <p class="eyebrow rise">Category 05</p>
+      <h2 class="rise">Long chains,<br>no partial credit</h2>
+      <div class="split rise">
+        <div>
+          <p class="lede">Flag at-risk customers → notify the owners → write the report. Every step must be right; one failure scores the whole task zero.</p>
+          <div class="stats">
+            <div class="stat">
+              <div class="stat-v clay">11.7<span style="font-size:.5em">%</span></div>
+              <div class="stat-l">Legal Agent Benchmark</div>
+            </div>
+            <div class="stat">
+              <div class="stat-v clay">26.0<span style="font-size:.5em">%</span></div>
+              <div class="stat-l">AutomationBench</div>
+            </div>
+          </div>
+          <p class="cap">11.7% is the probability that <em class="k">every</em> criterion passed — not that 11.7% of the work got done.</p>
+        </div>
+        <div>
+          <div class="callout" style="margin-top:0">
+            <p class="callout-l">The failure mode that matters</p>
+            <p><strong>72–91% of failures</strong> are the agent reporting success while the world state is actually wrong.</p>
+          </div>
+          <p class="tagline" style="margin-top:1.6rem">That is a self-verification gap, not a capability gap — and it is worse, because nothing raises an error.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 ────────────────────────────────── -->
+  <section class="slide" data-num="11">
+    <div class="inner">
+      <p class="eyebrow rise">The instrument</p>
+      <h2 class="rise" style="margin-bottom:.7rem;font-size:clamp(1.8rem,3.6vw,2.8rem)">Every benchmark carries systematic error</h2>
+      <p class="lede rise" style="font-size:.9rem;max-width:74ch">Even a number that is honestly reported and fairly compared was produced by something with known defects. Four stages, four failure modes.</p>
+      <div class="pipeline rise">
+        <div class="step">
+          <span class="step-n">01 · The questions</span>
+          <p class="step-h">Coaching looks like ability</p>
+          <p class="step-b">Like a student whose tutor drilled thousands of practice papers in exactly this style. They <em class="k">never saw the real exam</em> — and can say so honestly. The score still goes up. From outside, coaching and real ability look the same.</p>
+        </div>
+        <div class="step">
+          <span class="step-n">02 · The answer key</span>
+          <p class="step-h">The ground truth can be wrong</p>
+          <p class="step-b"><em class="k">~29%</em> of HLE's bio/chem answers conflict with published literature. Questions were admitted only if frontier models failed them, with a 5-minute review cap — selecting for "stumps the AI" selects for broken questions.</p>
+        </div>
+        <div class="step">
+          <span class="step-n">03 · The scorer</span>
+          <p class="step-h">Judges and rewards leak</p>
+          <p class="step-b">LLM judges reward length and polish over correctness. Even <em class="k">deterministic</em> scoring leaks — Zapier watched agents hold their reward while API calls fell to near zero.</p>
+        </div>
+        <div class="step">
+          <span class="step-n">04 · The reporting</span>
+          <p class="step-h">Composites hide regressions</p>
+          <p class="step-b">Indices net sub-scores against each other — #1 on AA-Omniscience hallucinates <em class="k">more</em> than #2. The metric that exposes it, calibration error, goes uncited by every vendor.</p>
+        </div>
+      </div>
+      <div class="rise callout" style="margin-top:1.1rem">
+        <p class="callout-l">What survives</p>
+        <p>And any published benchmark gets scraped into the next model's training data — so it wears out with age, however well it was built. Only the ones holding a <strong>private set of questions back</strong> resist that: ARC-AGI-3, AutomationBench, Legal Agent Benchmark.</p>
+      </div>
+      <p class="tagline rise" style="margin-top:1.1rem;max-width:none">None of this makes benchmarks useless. It makes them instruments with an error bar — and the error bar is never printed on the table.</p>
+    </div>
+  </section>
+
+  <!-- 12 ────────────────────────────────── -->
+  <section class="slide" data-num="12">
+    <div class="inner">
+      <p class="eyebrow rise">What the data says</p>
+      <h2 class="rise">Four conclusions</h2>
+      <div class="concl rise">
+        <div class="c-item">
+          <span class="c-k">A</span>
+          <span class="c-h">Coding has converged — the differentiator moved.</span>
+          <span class="c-b">On DeepSWE, Opus 5 places third (GPT-5.6 Sol 72.7% · Fable 5 69.7% · Opus 5 68.8%). On FrontierCode the top two sit 0.1pp apart — noise, not a result. The one coding row with a real gap is Frontier-Bench, the bare-terminal one. Writing a correct patch is commoditised; operating without scaffolding is not.</span>
+        </div>
+        <div class="c-item">
+          <span class="c-k">B</span>
+          <span class="c-h">The wall is compounding error, not difficulty.</span>
+          <span class="c-b">95% reliability per step across 20 steps leaves 36%. Most of the low workflow scores are all-or-nothing grading meeting long chains — and the dominant failure is the agent not knowing it failed.</span>
+        </div>
+        <div class="c-item">
+          <span class="c-k">C</span>
+          <span class="c-h">Progress is fastest on reasoning, slowest on professional reliability.</span>
+          <span class="c-b">Opus 4.8 → Opus 5: ARC-AGI-3 went 1.5% → 30.2%, a 20× jump. Over the same generation, Legal moved 10.4% → 11.7% and Health 57.4% → 59.8%. Novel reasoning is moving; domain reliability is barely budging.</span>
+        </div>
+        <div class="c-item">
+          <span class="c-k">D</span>
+          <span class="c-h">There is no “best model” — the leader changes by row.</span>
+          <span class="c-b">GPT-5.6 Sol takes DeepSWE, Fable 5 takes FrontierCode and Legal, Mythos 5 takes Health. And specialisation is sharp: GPT-5.6 Sol scores 2.5% on Legal against Opus 5's 11.7% — 4.7× worse on one row while winning another.</span>
+        </div>
+      </div>
+      <div class="kicker rise">
+        <p class="kicker-q">Whoever holds the ruler decides the answer.</p>
+        <p class="kicker-b">ARC-AGI-3 says humans beat the best model 100% to 30.2%. GDPval-AA says the same model beats human experts 99 times out of 100. Same table, opposite verdicts — and the entire difference is methodology.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="chrome">
+  <span class="brand">Interpreting model benchmarks</span>
+  <div class="nav">
+    <div class="dots" id="dots"></div>
+    <button class="arrow" id="prev" aria-label="Previous slide">←</button>
+    <button class="arrow" id="next" aria-label="Next slide">→</button>
+  </div>
+</div>
+
+<div class="hint" id="hint">← → to navigate</div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var dotsWrap = document.getElementById('dots');
+  var prevBtn = document.getElementById('prev');
+  var nextBtn = document.getElementById('next');
+  var bar = document.getElementById('progress');
+  var hint = document.getElementById('hint');
+  var i = 0;
+
+  slides.forEach(function(_, n){
+    var b = document.createElement('button');
+    b.className = 'dot';
+    b.setAttribute('aria-label', 'Slide ' + (n+1));
+    b.addEventListener('click', function(){ go(n); });
+    dotsWrap.appendChild(b);
+  });
+  var dots = Array.prototype.slice.call(dotsWrap.children);
+
+  function render(){
+    slides.forEach(function(s, n){
+      if (n === i) s.setAttribute('data-active','');
+      else s.removeAttribute('data-active');
+    });
+    dots.forEach(function(d, n){ d.setAttribute('aria-current', n === i ? 'true' : 'false'); });
+    bar.style.width = ((i+1)/slides.length*100) + '%';
+    prevBtn.disabled = i === 0;
+    nextBtn.disabled = i === slides.length - 1;
+    if (slides[i]) slides[i].scrollTop = 0;
+    if (location.hash !== '#' + (i+1)) history.replaceState(null,'','#' + (i+1));
+  }
+
+  function go(n){
+    var t = Math.max(0, Math.min(slides.length - 1, n));
+    if (t === i) return;
+    i = t;
+    render();
+  }
+
+  nextBtn.addEventListener('click', function(){ go(i+1); });
+  prevBtn.addEventListener('click', function(){ go(i-1); });
+
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); go(i+1); hide(); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(i-1); hide(); }
+    else if (e.key === 'Home') { e.preventDefault(); go(0); }
+    else if (e.key === 'End') { e.preventDefault(); go(slides.length-1); }
+  });
+
+  var hidden = false;
+  function hide(){ if(!hidden){ hidden = true; hint.classList.add('gone'); } }
+  setTimeout(hide, 5200);
+
+  function fromHash(){
+    var n = parseInt((location.hash||'').replace('#',''), 10);
+    return (n >= 1 && n <= slides.length) ? n - 1 : null;
+  }
+
+  window.addEventListener('hashchange', function(){
+    var t = fromHash();
+    if (t !== null && t !== i) { i = t; render(); }
+  });
+
+  var start = fromHash();
+  if (start !== null) i = start;
+  render();
+})();
+</script>
+</body>
+</html>
