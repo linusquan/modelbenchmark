@@ -77,6 +77,104 @@ How to interpret model evaluation scores — and what the July 2026 frontier com
 
 <div class="wm">04</div>
 
+<div class="eyebrow">The landscape</div>
+
+## Six kinds of test
+
+<p class="lede-sm" style="max-width:74ch">Every row in the table belongs to one of six categories. What a score means depends entirely on which one it came from.</p>
+
+<div class="land">
+  <div class="land-card">
+    <span class="land-k">01</span>
+    <p class="land-h">Software coding</p>
+    <p class="land-d">Fix, build and ship inside a real shell.</p>
+    <p class="land-w">Frontier-Bench · DeepSWE · FrontierCode</p>
+  </div>
+  <div class="land-card">
+    <span class="land-k">02</span>
+    <p class="land-h">Knowledge work</p>
+    <p class="land-d">Office deliverables from 44 professions, judged blind.</p>
+    <p class="land-w">GDPval-AA</p>
+  </div>
+  <div class="land-card">
+    <span class="land-k">03</span>
+    <p class="land-h">Dedicated professions</p>
+    <p class="land-d">Licensed-domain work — law, medicine, biology.</p>
+    <p class="land-w">Legal Agent Benchmark · HealthBench Pro · BioMysteryBench</p>
+  </div>
+  <div class="land-card">
+    <span class="land-k">04</span>
+    <p class="land-h">Novel reasoning</p>
+    <p class="land-d">Questions built so no training run has seen them.</p>
+    <p class="land-w">ARC-AGI-3 · Humanity's Last Exam</p>
+  </div>
+  <div class="land-card">
+    <span class="land-k">05</span>
+    <p class="land-h">Info search</p>
+    <p class="land-d">Answers that are fixed but genuinely hard to find.</p>
+    <p class="land-w">BrowseComp</p>
+  </div>
+  <div class="land-card">
+    <span class="land-k">06</span>
+    <p class="land-h">Computer use & workflows</p>
+    <p class="land-d">Operate real software — long chains, no partial credit.</p>
+    <p class="land-w">OSWorld 2.0 · AutomationBench</p>
+  </div>
+</div>
+
+<p class="cap" style="margin-top:16px">The table's own category labels, consolidated from twelve rows.</p>
+
+---
+layout: default
+class: dense
+---
+
+<div class="wm">05</div>
+
+<div class="eyebrow">The methods</div>
+
+<h2 style="margin-bottom:6px">How each one is marked</h2>
+
+<table class="matrix">
+<thead><tr>
+  <th>Category</th><th>Benchmark</th>
+  <th class="n">Binary<br>pass / fail</th>
+  <th class="n">Rubric<br>scored</th>
+  <th class="n">Human<br>baseline</th>
+  <th class="n">LLM<br>judge</th>
+</tr></thead>
+<tbody>
+<tr class="grp"><td class="cat">Coding</td><td>Frontier-Bench</td><td class="n g1">●</td><td class="n g0">—</td><td class="n g0">—</td><td class="n g0">—</td></tr>
+<tr><td></td><td>DeepSWE</td><td class="n g1">●</td><td class="n g0">—</td><td class="n g0">—</td><td class="n g0">—</td></tr>
+<tr><td></td><td>FrontierCode</td><td class="n g2">◐</td><td class="n g1">●</td><td class="n g0">—</td><td class="n g1">●</td></tr>
+<tr class="grp"><td class="cat">Knowledge work</td><td>GDPval-AA</td><td class="n g0">—</td><td class="n g0">—</td><td class="n g1">●</td><td class="n g1">●</td></tr>
+<tr class="grp"><td class="cat">Professions</td><td>Legal Agent Bench</td><td class="n g2">◐</td><td class="n g1">●</td><td class="n g0">—</td><td class="n gq">?</td></tr>
+<tr><td></td><td>HealthBench Pro</td><td class="n g0">—</td><td class="n g1">●</td><td class="n g2">◐</td><td class="n g1">●</td></tr>
+<tr><td></td><td>BioMysteryBench</td><td class="n g1">●</td><td class="n g0">—</td><td class="n g1">●</td><td class="n g0">—</td></tr>
+<tr class="grp"><td class="cat">Novel reasoning</td><td>ARC-AGI-3</td><td class="n g2">◐</td><td class="n g0">—</td><td class="n g1">●</td><td class="n g0">—</td></tr>
+<tr><td></td><td>Humanity's Last Exam</td><td class="n g1">●</td><td class="n g0">—</td><td class="n g0">—</td><td class="n g2">◐</td></tr>
+<tr class="grp"><td class="cat">Info search</td><td>BrowseComp</td><td class="n g1">●</td><td class="n g0">—</td><td class="n g2">◐</td><td class="n g2">◐</td></tr>
+<tr class="grp"><td class="cat">Computer use</td><td>OSWorld 2.0</td><td class="n g1">●</td><td class="n g0">—</td><td class="n g0">—</td><td class="n g0">—</td></tr>
+<tr><td></td><td>AutomationBench</td><td class="n g1">●</td><td class="n g0">—</td><td class="n g1">●</td><td class="n g0">—</td></tr>
+</tbody>
+</table>
+
+<div class="legend">
+  <b><span class="g1">●</span> primary method</b>
+  <b><span class="g2">◐</span> partial / secondary</b>
+  <b><span class="g0">—</span> not used</b>
+  <b><span class="gq">?</span> not published</b>
+</div>
+
+<div class="callout" style="margin-top:9px;padding:9px 14px">
+  <p class="callout-l" style="margin-bottom:4px">What a rubric actually is</p>
+  <p style="font-size:11.5px;line-height:1.4">A human-written checklist of criteria for one task — <em>"cites a real statute · flags the limitation period · no invented case law."</em> Something walks the list and awards points per criterion met — usually another LLM, which is why the two right-hand columns overlap. <strong>Binary asks "did it run?" A rubric asks "is it any good?" — only the first has a machine-checkable answer.</strong></p>
+</div>
+
+---
+
+<div class="wm">06</div>
+
 <div class="eyebrow">The two rules</div>
 
 ## Read down.<br>Never across.
@@ -96,7 +194,7 @@ How to interpret model evaluation scores — and what the July 2026 frontier com
 
 ---
 
-<div class="wm">05</div>
+<div class="wm">07</div>
 
 <div class="eyebrow">Vocabulary</div>
 
@@ -130,7 +228,7 @@ How to interpret model evaluation scores — and what the July 2026 frontier com
 
 ---
 
-<div class="wm">06</div>
+<div class="wm">08</div>
 
 <div class="eyebrow">Category 01</div>
 
@@ -149,7 +247,7 @@ How to interpret model evaluation scores — and what the July 2026 frontier com
 
 ---
 
-<div class="wm">07</div>
+<div class="wm">09</div>
 
 <div class="eyebrow">Category 02</div>
 
@@ -187,7 +285,7 @@ How to interpret model evaluation scores — and what the July 2026 frontier com
 
 ---
 
-<div class="wm">08</div>
+<div class="wm">10</div>
 
 <div class="eyebrow">Category 03</div>
 
@@ -238,7 +336,7 @@ How to interpret model evaluation scores — and what the July 2026 frontier com
 
 ---
 
-<div class="wm">09</div>
+<div class="wm">11</div>
 
 <div class="eyebrow">Category 04</div>
 
@@ -267,7 +365,7 @@ How to interpret model evaluation scores — and what the July 2026 frontier com
 
 ---
 
-<div class="wm">10</div>
+<div class="wm">12</div>
 
 <div class="eyebrow">Category 05</div>
 
@@ -299,7 +397,7 @@ How to interpret model evaluation scores — and what the July 2026 frontier com
 
 ---
 
-<div class="wm">11</div>
+<div class="wm">13</div>
 
 <div class="eyebrow">The instrument</div>
 
@@ -339,7 +437,7 @@ How to interpret model evaluation scores — and what the July 2026 frontier com
 
 ---
 
-<div class="wm">12</div>
+<div class="wm">14</div>
 
 <div class="eyebrow">What the data says</div>
 

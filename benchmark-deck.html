@@ -209,6 +209,44 @@ tbody td:first-child{color:var(--ink);font-weight:600;white-space:nowrap}
 }
 .formula--sm{font-size:clamp(.92rem,1.3vw,1.1rem);padding:.75rem 1rem;margin:0}
 
+/* landscape — six category cards */
+.land{display:grid;gap:1.2rem 1.4rem;margin-top:1.4rem}
+@media(min-width:52rem){.land{grid-template-columns:repeat(3,1fr)}}
+.land-card{border-top:2px solid var(--clay);padding-top:.65rem}
+.land-k{
+  font-family:var(--display);font-size:.7rem;letter-spacing:.14em;
+  color:var(--ink-soft);display:block;margin-bottom:.35rem;
+}
+.land-h{font-weight:600;font-size:1rem;line-height:1.2;letter-spacing:-.008em;margin-bottom:.35rem}
+.land-d{font-size:.8rem;line-height:1.42;color:var(--ink-mid);margin-bottom:.45rem}
+.land-w{font-size:.7rem;line-height:1.4;color:var(--clay-deep);font-weight:600}
+
+/* method matrix */
+.matrix{width:100%;border-collapse:collapse;font-size:.74rem;margin-top:.6rem}
+.matrix th{
+  text-align:left;font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-soft);font-weight:600;padding:0 .55rem .35rem 0;
+  border-bottom:1px solid var(--ink);line-height:1.3;
+}
+.matrix th.n{text-align:center;padding-right:0;width:5.5rem}
+.matrix td{padding:.2rem .55rem .2rem 0;line-height:1.2;border-bottom:1px solid var(--rule);color:var(--ink-mid)}
+.matrix td:first-child{white-space:nowrap;font-weight:600;color:var(--ink)}
+.matrix td.n{text-align:center;padding-right:0;font-size:.82rem}
+.matrix td.cat{
+  font-size:.58rem;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--clay-deep);font-weight:600;white-space:nowrap;
+}
+.matrix tr.grp td{border-top:1px solid var(--ink-soft)}
+.g1{color:var(--clay-deep)}
+.g2{color:var(--clay);opacity:.8}
+.g0{color:var(--rule)}
+.gq{color:var(--ink-soft);font-weight:600}
+.legend{
+  display:flex;gap:1.15rem;flex-wrap:wrap;margin-top:.55rem;
+  font-size:.62rem;color:var(--ink-soft);align-items:center;
+}
+.legend b{font-weight:400}
+
 /* pipeline */
 .pipeline{display:grid;gap:1.35rem;margin-top:1.7rem}
 @media(min-width:62rem){.pipeline{grid-template-columns:repeat(4,1fr);gap:1.4rem}}
@@ -344,6 +382,100 @@ sup{font-size:.62em;vertical-align:super}
   <!-- 04 ────────────────────────────────── -->
   <section class="slide" data-num="04">
     <div class="inner">
+      <p class="eyebrow rise">The landscape</p>
+      <h2 class="rise">Six kinds of test</h2>
+      <p class="lede rise" style="max-width:74ch">Every row in the table belongs to one of six categories. What a score means depends entirely on which one it came from.</p>
+
+      <div class="land rise">
+        <div class="land-card">
+          <span class="land-k">01</span>
+          <p class="land-h">Software coding</p>
+          <p class="land-d">Fix, build and ship inside a real shell.</p>
+          <p class="land-w">Frontier-Bench · DeepSWE · FrontierCode</p>
+        </div>
+        <div class="land-card">
+          <span class="land-k">02</span>
+          <p class="land-h">Knowledge work</p>
+          <p class="land-d">Office deliverables from 44 professions, judged blind.</p>
+          <p class="land-w">GDPval-AA</p>
+        </div>
+        <div class="land-card">
+          <span class="land-k">03</span>
+          <p class="land-h">Dedicated professions</p>
+          <p class="land-d">Licensed-domain work — law, medicine, biology.</p>
+          <p class="land-w">Legal Agent Benchmark · HealthBench Pro · BioMysteryBench</p>
+        </div>
+        <div class="land-card">
+          <span class="land-k">04</span>
+          <p class="land-h">Novel reasoning</p>
+          <p class="land-d">Questions built so no training run has seen them.</p>
+          <p class="land-w">ARC-AGI-3 · Humanity's Last Exam</p>
+        </div>
+        <div class="land-card">
+          <span class="land-k">05</span>
+          <p class="land-h">Info search</p>
+          <p class="land-d">Answers that are fixed but genuinely hard to find.</p>
+          <p class="land-w">BrowseComp</p>
+        </div>
+        <div class="land-card">
+          <span class="land-k">06</span>
+          <p class="land-h">Computer use &amp; workflows</p>
+          <p class="land-d">Operate real software — long chains, no partial credit.</p>
+          <p class="land-w">OSWorld 2.0 · AutomationBench</p>
+        </div>
+      </div>
+
+      <p class="rise cap" style="margin-top:1rem">The table's own category labels, consolidated from twelve rows.</p>
+    </div>
+  </section>
+
+  <!-- 05 ────────────────────────────────── -->
+  <section class="slide" data-num="05">
+    <div class="inner">
+      <p class="eyebrow rise">The methods</p>
+      <h2 class="rise" style="margin-bottom:.4rem">How each one is marked</h2>
+
+      <table class="matrix rise">
+        <thead><tr>
+          <th>Category</th><th>Benchmark</th>
+          <th class="n">Binary<br>pass / fail</th>
+          <th class="n">Rubric<br>scored</th>
+          <th class="n">Human<br>baseline</th>
+          <th class="n">LLM<br>judge</th>
+        </tr></thead>
+        <tbody>
+        <tr class="grp"><td class="cat">Coding</td><td>Frontier-Bench</td><td class="n g1">●</td><td class="n g0">—</td><td class="n g0">—</td><td class="n g0">—</td></tr>
+        <tr><td></td><td>DeepSWE</td><td class="n g1">●</td><td class="n g0">—</td><td class="n g0">—</td><td class="n g0">—</td></tr>
+        <tr><td></td><td>FrontierCode</td><td class="n g2">◐</td><td class="n g1">●</td><td class="n g0">—</td><td class="n g1">●</td></tr>
+        <tr class="grp"><td class="cat">Knowledge work</td><td>GDPval-AA</td><td class="n g0">—</td><td class="n g0">—</td><td class="n g1">●</td><td class="n g1">●</td></tr>
+        <tr class="grp"><td class="cat">Professions</td><td>Legal Agent Bench</td><td class="n g2">◐</td><td class="n g1">●</td><td class="n g0">—</td><td class="n gq">?</td></tr>
+        <tr><td></td><td>HealthBench Pro</td><td class="n g0">—</td><td class="n g1">●</td><td class="n g2">◐</td><td class="n g1">●</td></tr>
+        <tr><td></td><td>BioMysteryBench</td><td class="n g1">●</td><td class="n g0">—</td><td class="n g1">●</td><td class="n g0">—</td></tr>
+        <tr class="grp"><td class="cat">Novel reasoning</td><td>ARC-AGI-3</td><td class="n g2">◐</td><td class="n g0">—</td><td class="n g1">●</td><td class="n g0">—</td></tr>
+        <tr><td></td><td>Humanity's Last Exam</td><td class="n g1">●</td><td class="n g0">—</td><td class="n g0">—</td><td class="n g2">◐</td></tr>
+        <tr class="grp"><td class="cat">Info search</td><td>BrowseComp</td><td class="n g1">●</td><td class="n g0">—</td><td class="n g2">◐</td><td class="n g2">◐</td></tr>
+        <tr class="grp"><td class="cat">Computer use</td><td>OSWorld 2.0</td><td class="n g1">●</td><td class="n g0">—</td><td class="n g0">—</td><td class="n g0">—</td></tr>
+        <tr><td></td><td>AutomationBench</td><td class="n g1">●</td><td class="n g0">—</td><td class="n g1">●</td><td class="n g0">—</td></tr>
+        </tbody>
+      </table>
+
+      <div class="legend rise">
+        <b><span class="g1">●</span> primary method</b>
+        <b><span class="g2">◐</span> partial / secondary</b>
+        <b><span class="g0">—</span> not used</b>
+        <b><span class="gq">?</span> not published</b>
+      </div>
+
+      <div class="callout rise" style="margin-top:.6rem;padding:.6rem .9rem">
+        <p class="callout-l" style="margin-bottom:.25rem;font-size:.6rem">What a rubric actually is</p>
+        <p style="font-size:.72rem;line-height:1.4">A human-written checklist of criteria for one task — <em>"cites a real statute · flags the limitation period · no invented case law."</em> Something walks the list and awards points per criterion met — usually another LLM, which is why the two right-hand columns overlap. <strong>Binary asks "did it run?" A rubric asks "is it any good?" — only the first has a machine-checkable answer.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 ────────────────────────────────── -->
+  <section class="slide" data-num="06">
+    <div class="inner">
       <p class="eyebrow rise">The two rules</p>
       <h2 class="rise">Read down.<br>Never across.</h2>
       <div class="rules rise">
@@ -361,8 +493,8 @@ sup{font-size:.62em;vertical-align:super}
     </div>
   </section>
 
-  <!-- 05 ────────────────────────────────── -->
-  <section class="slide" data-num="05">
+  <!-- 07 ────────────────────────────────── -->
+  <section class="slide" data-num="07">
     <div class="inner">
       <p class="eyebrow rise">Vocabulary</p>
       <h2 class="rise">Three ways to earn a number</h2>
@@ -393,8 +525,8 @@ sup{font-size:.62em;vertical-align:super}
     </div>
   </section>
 
-  <!-- 06 ────────────────────────────────── -->
-  <section class="slide" data-num="06">
+  <!-- 08 ────────────────────────────────── -->
+  <section class="slide" data-num="08">
     <div class="inner">
       <p class="eyebrow rise">Category 01</p>
       <h2 class="rise">Coding</h2>
@@ -429,8 +561,8 @@ sup{font-size:.62em;vertical-align:super}
     </div>
   </section>
 
-  <!-- 07 ────────────────────────────────── -->
-  <section class="slide" data-num="07">
+  <!-- 09 ────────────────────────────────── -->
+  <section class="slide" data-num="09">
     <div class="inner">
       <p class="eyebrow rise">Category 02</p>
       <h2 class="rise">Novel problem-solving</h2>
@@ -466,8 +598,8 @@ sup{font-size:.62em;vertical-align:super}
     </div>
   </section>
 
-  <!-- 08 ────────────────────────────────── -->
-  <section class="slide" data-num="08">
+  <!-- 10 ────────────────────────────────── -->
+  <section class="slide" data-num="10">
     <div class="inner">
       <p class="eyebrow rise">Category 03</p>
       <h2 class="rise" style="margin-bottom:.9rem">Knowledge work</h2>
@@ -518,8 +650,8 @@ sup{font-size:.62em;vertical-align:super}
     </div>
   </section>
 
-  <!-- 09 ────────────────────────────────── -->
-  <section class="slide" data-num="09">
+  <!-- 11 ────────────────────────────────── -->
+  <section class="slide" data-num="11">
     <div class="inner">
       <p class="eyebrow rise">Category 04</p>
       <h2 class="rise">Agentic search</h2>
@@ -545,8 +677,8 @@ sup{font-size:.62em;vertical-align:super}
     </div>
   </section>
 
-  <!-- 10 ────────────────────────────────── -->
-  <section class="slide" data-num="10">
+  <!-- 12 ────────────────────────────────── -->
+  <section class="slide" data-num="12">
     <div class="inner">
       <p class="eyebrow rise">Category 05</p>
       <h2 class="rise">Long chains,<br>no partial credit</h2>
@@ -576,8 +708,8 @@ sup{font-size:.62em;vertical-align:super}
     </div>
   </section>
 
-  <!-- 11 ────────────────────────────────── -->
-  <section class="slide" data-num="11">
+  <!-- 13 ────────────────────────────────── -->
+  <section class="slide" data-num="13">
     <div class="inner">
       <p class="eyebrow rise">The instrument</p>
       <h2 class="rise" style="margin-bottom:.7rem;font-size:clamp(1.8rem,3.6vw,2.8rem)">Every benchmark carries systematic error</h2>
@@ -612,8 +744,8 @@ sup{font-size:.62em;vertical-align:super}
     </div>
   </section>
 
-  <!-- 12 ────────────────────────────────── -->
-  <section class="slide" data-num="12">
+  <!-- 14 ────────────────────────────────── -->
+  <section class="slide" data-num="14">
     <div class="inner">
       <p class="eyebrow rise">What the data says</p>
       <h2 class="rise">Four conclusions</h2>

@@ -161,6 +161,45 @@
 }
 .callout p{font-size:13px;color:var(--ink-mid);line-height:1.5}
 
+/* landscape — six category cards */
+.land{display:grid;grid-template-columns:repeat(3,1fr);gap:20px 22px;margin-top:20px}
+.land-card{border-top:2px solid var(--clay);padding-top:10px}
+.land-k{
+  font-family:var(--display);font-size:11px;letter-spacing:.14em;
+  color:var(--ink-soft);display:block;margin-bottom:5px;
+}
+.land-h{font-weight:600;font-size:15px;line-height:1.2;letter-spacing:-.008em;margin-bottom:5px}
+.land-d{font-size:12px;line-height:1.42;color:var(--ink-mid);margin-bottom:7px}
+.land-w{font-size:10.5px;line-height:1.4;color:var(--clay-deep);font-weight:600}
+
+.slidev-layout.dense{padding-top:30px;padding-bottom:34px;justify-content:flex-start}
+.slidev-layout.dense > .wm{position:absolute}
+.slidev-layout.dense .eyebrow{margin-bottom:13px}
+
+/* method matrix */
+.matrix{font-size:11px;margin-top:8px;table-layout:fixed}
+.matrix th{padding:0 9px 5px 0;font-size:8px;letter-spacing:.12em;line-height:1.3}
+.matrix th:first-child{width:130px}
+.matrix th:nth-child(2){width:auto}
+.matrix th.n{text-align:center;padding-right:0;width:88px}
+.matrix td{padding:2px 9px 2px 0;line-height:1.2;border-bottom:1px solid var(--rule)}
+.matrix td:first-child{white-space:nowrap;font-weight:600;font-size:11px}
+.matrix td.n{text-align:center;padding-right:0;font-size:12px}
+.matrix td.cat{
+  font-size:9px;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--clay-deep);font-weight:600;white-space:nowrap;
+}
+.matrix tr.grp td{border-top:1px solid var(--ink-soft)}
+.g1{color:var(--clay-deep)}
+.g2{color:var(--clay);opacity:.8}
+.g0{color:var(--rule)}
+.gq{color:var(--ink-soft);font-size:11px;font-weight:600}
+.legend{
+  display:flex;gap:18px;flex-wrap:wrap;margin-top:8px;
+  font-size:9.5px;color:var(--ink-soft);align-items:center;
+}
+.legend b{font-weight:400}
+
 /* pipeline */
 .pipeline{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:20px}
 .step{border-top:1px solid var(--rule);padding-top:11px}
