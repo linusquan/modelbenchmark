@@ -475,7 +475,7 @@ sup{font-size:.62em;vertical-align:super}
   <!-- 06 ────────────────────────────────── -->
   <section class="slide" data-num="06">
     <div class="inner">
-      <p class="eyebrow rise">Category 01</p>
+      <p class="eyebrow rise">Coding</p>
       <h2 class="rise">Coding</h2>
       <div class="rise tbl-wrap">
         <table>
@@ -508,7 +508,7 @@ sup{font-size:.62em;vertical-align:super}
   <!-- 07 ────────────────────────────────── -->
   <section class="slide" data-num="07">
     <div class="inner">
-      <p class="eyebrow rise">Category 02</p>
+      <p class="eyebrow rise">Reasoning</p>
       <h2 class="rise">Novel problem-solving</h2>
       <div class="split rise">
         <div>
@@ -541,86 +541,45 @@ sup{font-size:.62em;vertical-align:super}
   <!-- 08 ────────────────────────────────── -->
   <section class="slide" data-num="08">
     <div class="inner">
-      <p class="eyebrow rise">Category 03</p>
+      <p class="eyebrow rise">Generic problems</p>
       <h2 class="rise" style="margin-bottom:.9rem">Knowledge work</h2>
       <p class="lede rise" style="font-size:1rem">There is no score anywhere in this pipeline. Every number comes from one model's work being preferred over another's.</p>
 
       <div class="pipeline rise">
         <div class="step">
-          <span class="step-n">Step 01 · Source</span>
-          <p class="step-h">Real professional deliverables</p>
-          <p class="step-b">Tasks drawn from <em>44 occupations across 9 industries</em> — finance, healthcare, legal, engineering — written by practitioners averaging 14 years' experience.</p>
+          <span class="step-n">01 · Source</span>
+          <p class="step-h">Real professional work</p>
+          <p class="step-b">Tasks from <em>44 occupations</em>, written by practitioners.</p>
         </div>
         <div class="step">
-          <span class="step-n">Step 02 · Attempt</span>
+          <span class="step-n">02 · Attempt</span>
           <p class="step-h">The model does the job</p>
-          <p class="step-b">An agentic sandbox (Stirrup) with web search, code execution and a filesystem, up to <em>250 turns</em>. It ships real documents, slides and spreadsheets.</p>
+          <p class="step-b">An agentic sandbox ships real documents and spreadsheets.</p>
         </div>
         <div class="step">
-          <span class="step-n">Step 03 · Judge</span>
-          <p class="step-h">Blind pairwise, one judge per matchup</p>
-          <p class="step-b">Two outputs for the <em>same task</em> are anonymised and set side by side. A judge picks a winner — sampled each time from a panel of three frontier LLMs.</p>
+          <span class="step-n">03 · Judge</span>
+          <p class="step-h">Blind, side by side</p>
+          <p class="step-b">Model output vs. human output — an LLM picks the winner.</p>
         </div>
         <div class="step">
-          <span class="step-n">Step 04 · Rating</span>
+          <span class="step-n">04 · Rating</span>
           <p class="step-h">Fitted into an Elo scale</p>
-          <p class="step-b">Thousands of matchups are fitted with a Bradley–Terry model, then <em>anchored so human expert = 1000</em>. No ceiling.</p>
+          <p class="step-b">Win/loss record converted to a score, <em>human expert = 1000</em>.</p>
         </div>
       </div>
 
-      <div class="split rise" style="margin-top:1.9rem">
-        <div>
-          <div class="formula formula--sm">
-            P(win) =
-            <span class="frac">
-              <span class="num">1</span>
-              <span class="den">1 + 10<sup>−Δ⁄400</sup></span>
-            </span>
-          </div>
-          <p class="cap">Opus 5 scores <strong>1861</strong>. Against the 1000 anchor, Δ = 861 — roughly a <strong>99%</strong> win rate head-to-head against the human deliverable.</p>
-        </div>
-        <div>
-          <div class="callout" style="margin-top:0">
-            <p class="callout-l">Who is holding the ruler</p>
-            <p>The panel is <strong>GPT-5.5, Gemini 3.1 Pro and Claude Opus 4.8</strong> — so one judge comes from the same lab as the model topping this row. And LLM judges reliably prefer polished, well-structured writing over the terse, shorthand-heavy work real experts actually deliver.</p>
-          </div>
-        </div>
+      <div class="callout rise" style="margin-top:1.6rem">
+        <p class="callout-l">Opus 5 scores 1861 — a 99% win rate against the human deliverable, head-to-head</p>
+        <p>But the judge panel includes <strong>Claude Opus 4.8</strong>, from the same lab as the model topping this row — and LLM judges reliably favour polished, well-structured writing over the terse, shorthand-heavy work real experts actually deliver.</p>
       </div>
-      <p class="tagline rise" style="margin-top:1.5rem">1861 means “this looks like expert work to an LLM” — not “this replaces experts.”</p>
+      <p class="tagline rise" style="margin-top:1.2rem">1861 means “this looks like expert work to an LLM” — not “this replaces experts.”</p>
     </div>
   </section>
 
   <!-- 09 ────────────────────────────────── -->
   <section class="slide" data-num="09">
     <div class="inner">
-      <p class="eyebrow rise">Category 04</p>
-      <h2 class="rise">Agentic search</h2>
-      <div class="rise">
-        <p class="lede">Answers that are fixed but genuinely hard to find — multi-round retrieval, then cross-verification.</p>
-        <div class="stats" style="margin-top:2.2rem">
-          <div class="stat">
-            <div class="stat-v clay">90.8<span style="font-size:.5em">%</span></div>
-            <div class="stat-l">Opus 5</div>
-          </div>
-          <div class="stat">
-            <div class="stat-v">90.4<span style="font-size:.5em">%</span></div>
-            <div class="stat-l">GPT-5.6 Sol</div>
-          </div>
-          <div class="stat">
-            <div class="stat-v">0.4<span style="font-size:.5em">pp</span></div>
-            <div class="stat-l">The entire gap</div>
-          </div>
-        </div>
-      </div>
-      <hr class="hr rise">
-      <p class="tagline rise">Past 90%, a benchmark stops separating models. Keep it to catch regressions — not to measure progress.</p>
-    </div>
-  </section>
-
-  <!-- 10 ────────────────────────────────── -->
-  <section class="slide" data-num="10">
-    <div class="inner">
-      <p class="eyebrow rise">Category 05</p>
+      <p class="eyebrow rise">Long-running tasks</p>
       <h2 class="rise">Long chains,<br>no partial credit</h2>
       <div class="split rise">
         <div>
@@ -648,8 +607,8 @@ sup{font-size:.62em;vertical-align:super}
     </div>
   </section>
 
-  <!-- 11 ────────────────────────────────── -->
-  <section class="slide" data-num="11">
+  <!-- 10 ────────────────────────────────── -->
+  <section class="slide" data-num="10">
     <div class="inner">
       <p class="eyebrow rise">The instrument</p>
       <h2 class="rise" style="margin-bottom:.7rem;font-size:clamp(1.8rem,3.6vw,2.8rem)">Every benchmark carries systematic error</h2>
@@ -680,12 +639,11 @@ sup{font-size:.62em;vertical-align:super}
         <p class="callout-l">What survives</p>
         <p>And any published benchmark gets scraped into the next model's training data — so it wears out with age, however well it was built. Only the ones holding a <strong>private set of questions back</strong> resist that: ARC-AGI-3, AutomationBench, Legal Agent Benchmark.</p>
       </div>
-      <p class="tagline rise" style="margin-top:1.1rem;max-width:none">None of this makes benchmarks useless. It makes them instruments with an error bar — and the error bar is never printed on the table.</p>
     </div>
   </section>
 
-  <!-- 12 ────────────────────────────────── -->
-  <section class="slide" data-num="12">
+  <!-- 11 ────────────────────────────────── -->
+  <section class="slide" data-num="11">
     <div class="inner">
       <p class="eyebrow rise">What the data says</p>
       <h2 class="rise">Four conclusions</h2>
@@ -710,10 +668,6 @@ sup{font-size:.62em;vertical-align:super}
           <span class="c-h">There is no “best model” — the leader changes by row.</span>
           <span class="c-b">GPT-5.6 Sol takes DeepSWE, Fable 5 takes FrontierCode and Legal, Mythos 5 takes Health. And specialisation is sharp: GPT-5.6 Sol scores 2.5% on Legal against Opus 5's 11.7% — 4.7× worse on one row while winning another.</span>
         </div>
-      </div>
-      <div class="kicker rise">
-        <p class="kicker-q">Whoever holds the ruler decides the answer.</p>
-        <p class="kicker-b">ARC-AGI-3 says humans beat the best model 100% to 30.2%. GDPval-AA says the same model beats human experts 99 times out of 100. Same table, opposite verdicts — and the entire difference is methodology.</p>
       </div>
     </div>
   </section>

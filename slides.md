@@ -175,7 +175,7 @@ class: dense
 
 <div class="wm">06</div>
 
-<div class="eyebrow">Category 01</div>
+<div class="eyebrow">Coding</div>
 
 ## Coding
 
@@ -194,7 +194,7 @@ class: dense
 
 <div class="wm">07</div>
 
-<div class="eyebrow">Category 02</div>
+<div class="eyebrow">Reasoning</div>
 
 ## Novel problem-solving
 
@@ -228,7 +228,7 @@ class: dense
 
 <div class="wm">08</div>
 
-<div class="eyebrow">Category 03</div>
+<div class="eyebrow">Generic problems</div>
 
 ## Knowledge work
 
@@ -236,41 +236,30 @@ class: dense
 
 <div class="pipeline">
   <div class="step">
-    <span class="step-n">Step 01 · Source</span>
-    <p class="step-h">Real professional deliverables</p>
-    <p class="step-b">Tasks drawn from <em>44 occupations across 9 industries</em> — finance, healthcare, legal, engineering — written by practitioners averaging 14 years' experience.</p>
+    <span class="step-n">01 · Source</span>
+    <p class="step-h">Real professional work</p>
+    <p class="step-b">Tasks from <em>44 occupations</em>, written by practitioners.</p>
   </div>
   <div class="step">
-    <span class="step-n">Step 02 · Attempt</span>
+    <span class="step-n">02 · Attempt</span>
     <p class="step-h">The model does the job</p>
-    <p class="step-b">An agentic sandbox (Stirrup) with web search, code execution and a filesystem, up to <em>250 turns</em>. It ships real documents, slides and spreadsheets.</p>
+    <p class="step-b">An agentic sandbox ships real documents and spreadsheets.</p>
   </div>
   <div class="step">
-    <span class="step-n">Step 03 · Judge</span>
-    <p class="step-h">Blind pairwise, one judge per matchup</p>
-    <p class="step-b">Two outputs for the <em>same task</em> are anonymised and set side by side. A judge picks a winner — sampled each time from a panel of three frontier LLMs.</p>
+    <span class="step-n">03 · Judge</span>
+    <p class="step-h">Blind, side by side</p>
+    <p class="step-b">Model output vs. human output — an LLM picks the winner.</p>
   </div>
   <div class="step">
-    <span class="step-n">Step 04 · Rating</span>
+    <span class="step-n">04 · Rating</span>
     <p class="step-h">Fitted into an Elo scale</p>
-    <p class="step-b">Thousands of matchups are fitted with a Bradley–Terry model, then <em>anchored so human expert = 1000</em>. No ceiling.</p>
+    <p class="step-b">Win/loss record converted to a score, <em>human expert = 1000</em>.</p>
   </div>
 </div>
 
-<div class="split" style="margin-top:20px">
-<div>
-  <div class="formula formula-sm">
-    P(win) =
-    <span class="frac"><span class="num">1</span><span class="den">1 + 10<sup>−Δ⁄400</sup></span></span>
-  </div>
-  <p class="cap">Opus 5 scores <strong>1861</strong>. Against the 1000 anchor, Δ = 861 — roughly a <strong>99%</strong> win rate head-to-head against the human deliverable.</p>
-</div>
-<div>
-  <div class="callout" style="margin-top:0">
-    <p class="callout-l">Who is holding the ruler</p>
-    <p>The panel is <strong>GPT-5.5, Gemini 3.1 Pro and Claude Opus 4.8</strong> — so one judge comes from the same lab as the model topping this row. And LLM judges reliably prefer polished, well-structured writing over the terse, shorthand-heavy work real experts actually deliver.</p>
-  </div>
-</div>
+<div class="callout" style="margin-top:20px">
+  <p class="callout-l">Opus 5 scores 1861 — a 99% win rate against the human deliverable, head-to-head</p>
+  <p>But the judge panel includes <strong>Claude Opus 4.8</strong>, from the same lab as the model topping this row — and LLM judges reliably favour polished, well-structured writing over the terse, shorthand-heavy work real experts actually deliver.</p>
 </div>
 
 <p class="tagline" style="margin-top:16px;font-size:19px">1861 means “this looks like expert work to an LLM” — not “this replaces experts.”</p>
@@ -279,36 +268,7 @@ class: dense
 
 <div class="wm">09</div>
 
-<div class="eyebrow">Category 04</div>
-
-## Agentic search
-
-<p class="lede">Answers that are fixed but genuinely hard to find — multi-round retrieval, then cross-verification.</p>
-
-<div class="stats" style="margin-top:30px">
-  <div>
-    <div class="stat-v clay">90.8<span class="u">%</span></div>
-    <div class="stat-l">Opus 5</div>
-  </div>
-  <div>
-    <div class="stat-v">90.4<span class="u">%</span></div>
-    <div class="stat-l">GPT-5.6 Sol</div>
-  </div>
-  <div>
-    <div class="stat-v">0.4<span class="u">pp</span></div>
-    <div class="stat-l">The entire gap</div>
-  </div>
-</div>
-
-<div style="height:1px;background:var(--rule);margin:32px 0"></div>
-
-<p class="tagline">Past 90%, a benchmark stops separating models. Keep it to catch regressions — not to measure progress.</p>
-
----
-
-<div class="wm">10</div>
-
-<div class="eyebrow">Category 05</div>
+<div class="eyebrow">Long-running tasks</div>
 
 ## Long chains, no partial credit
 
@@ -338,7 +298,7 @@ class: dense
 
 ---
 
-<div class="wm">11</div>
+<div class="wm">10</div>
 
 <div class="eyebrow">The instrument</div>
 
@@ -374,11 +334,9 @@ class: dense
   <p>And any published benchmark gets scraped into the next model's training data — so it wears out with age, however well it was built. Only the ones holding a <strong>private set of questions back</strong> resist that: ARC-AGI-3, AutomationBench, Legal Agent Benchmark.</p>
 </div>
 
-<p class="tagline" style="margin-top:14px;font-size:19px;max-width:none">None of this makes benchmarks useless. It makes them instruments with an error bar — and the error bar is never printed on the table.</p>
-
 ---
 
-<div class="wm">12</div>
+<div class="wm">11</div>
 
 <div class="eyebrow">What the data says</div>
 
@@ -405,9 +363,4 @@ class: dense
     <span class="c-h">There is no “best model” — the leader changes by row.</span>
     <span class="c-b">GPT-5.6 Sol takes DeepSWE, Fable 5 takes FrontierCode and Legal, Mythos 5 takes Health. And specialisation is sharp: GPT-5.6 Sol scores 2.5% on Legal against Opus 5's 11.7% — 4.7× worse on one row while winning another.</span>
   </div>
-</div>
-
-<div class="kicker">
-  <p class="kicker-q">Whoever holds the ruler decides the answer.</p>
-  <p class="kicker-b">ARC-AGI-3 says humans beat the best model 100% to 30.2%. GDPval-AA says the same model beats human experts 99 times out of 100. Same table, opposite verdicts — and the entire difference is methodology.</p>
 </div>
