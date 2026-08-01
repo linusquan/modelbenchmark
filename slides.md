@@ -200,14 +200,20 @@ class: dense
 
 <div class="split">
 <div>
-  <p class="lede-sm">No instructions, no tutorial. The model is dropped into a game and must infer the rules, the goal, and the win condition by acting.</p>
+  <p class="lede-sm">No instructions. The model is dropped into a game and must figure out the rules by acting — then it's scored on how many steps it needed, against a human baseline.</p>
 
   <div class="formula">score = min(1.15, (human steps ÷ AI steps)<sup>2</sup>)</div>
-  <p class="cap">Squared — so being twice as slow as a human costs 75% of the points, not 50%. The baseline is the median first-time player.</p>
+  <p class="cap">Match the human pace, score 100%. Take twice as long, score ~25% — not 50%, because the gap is squared.</p>
 
-  <div class="callout" style="margin-top:14px">
-    <p class="callout-l">Opus 5 scores 30.2% overall — which means what?</p>
-    <p>Averaged over 25 games, so it hides two failure modes. <strong>Cleared everything but took ~1.8× the human steps</strong> → (1÷1.8)² ≈ 31%. Or <strong>human-efficient but only ~30% of levels cleared</strong> → 30%. Reality is a blend.</p>
+  <div class="stats" style="margin-top:20px">
+    <div>
+      <div class="stat-v">100<span class="u">%</span></div>
+      <div class="stat-l">Human baseline, by definition</div>
+    </div>
+    <div>
+      <div class="stat-v clay">30.2<span class="u">%</span></div>
+      <div class="stat-l">Opus 5, averaged over 25 games</div>
+    </div>
   </div>
 </div>
 <div>
@@ -215,16 +221,6 @@ class: dense
     <img src="/arc-agi-3.png" alt="ARC-AGI-3 task ls20 gameplay">
   </div>
   <p class="cap">ARC-AGI-3, task <strong>ls20</strong> — playable at arcprize.org. The only benchmark on the table that has not saturated.</p>
-  <div class="stats" style="margin-top:14px">
-    <div>
-      <div class="stat-v">100<span class="u">%</span></div>
-      <div class="stat-l">Humans on ls20, in 776 actions</div>
-    </div>
-    <div>
-      <div class="stat-v clay">5.36<span class="u">%</span></div>
-      <div class="stat-l">Opus 5 on that same task</div>
-    </div>
-  </div>
 </div>
 </div>
 

@@ -512,23 +512,19 @@ sup{font-size:.62em;vertical-align:super}
       <h2 class="rise">Novel problem-solving</h2>
       <div class="split rise">
         <div>
-          <p class="lede">No instructions, no tutorial. The model is dropped into a game and must infer the rules, the goal, and the win condition by acting.</p>
+          <p class="lede">No instructions. The model is dropped into a game and must figure out the rules by acting — then it's scored on how many steps it needed, against a human baseline.</p>
           <div class="formula">
             score = min(1.15, (human steps ÷ AI steps)<sup>2</sup>)
           </div>
-          <p class="cap" style="margin-top:0">Squared — so being twice as slow as a human costs 75% of the points, not 50%. The baseline is the median first-time player.</p>
-          <div class="callout" style="margin-top:1.2rem">
-            <p class="callout-l">Opus 5 scores 30.2% overall — which means what?</p>
-            <p style="font-size:.87rem">Averaged over 25 games, so it hides two failure modes. <strong>Cleared everything but took ~1.8× the human steps</strong> → (1÷1.8)² ≈ 31%. Or <strong>human-efficient but only ~30% of levels cleared</strong> → 30%. Reality is a blend.</p>
-          </div>
-          <div class="stats" style="margin-top:1.3rem">
+          <p class="cap" style="margin-top:0">Match the human pace, score 100%. Take twice as long, score ~25% — not 50%, because the gap is squared.</p>
+          <div class="stats" style="margin-top:1.5rem">
             <div class="stat">
               <div class="stat-v">100<span style="font-size:.5em">%</span></div>
-              <div class="stat-l">Humans on task ls20, in 776 actions</div>
+              <div class="stat-l">Human baseline, by definition</div>
             </div>
             <div class="stat">
-              <div class="stat-v clay">5.36<span style="font-size:.5em">%</span></div>
-              <div class="stat-l">Opus 5 on that same task</div>
+              <div class="stat-v clay">30.2<span style="font-size:.5em">%</span></div>
+              <div class="stat-l">Opus 5, averaged over 25 games</div>
             </div>
           </div>
         </div>
