@@ -268,38 +268,6 @@ class: dense
 
 <div class="wm">09</div>
 
-<div class="eyebrow">Long-running tasks</div>
-
-## Long chains, no partial credit
-
-<div class="split">
-<div>
-  <p class="lede-sm">Flag at-risk customers → notify the owners → write the report. Every step must be right; one failure scores the whole task zero.</p>
-  <div class="stats">
-    <div>
-      <div class="stat-v clay">11.7<span class="u">%</span></div>
-      <div class="stat-l">Legal Agent Benchmark</div>
-    </div>
-    <div>
-      <div class="stat-v clay">26.0<span class="u">%</span></div>
-      <div class="stat-l">AutomationBench</div>
-    </div>
-  </div>
-  <p class="cap">11.7% is the probability that <strong>every</strong> criterion passed — not that 11.7% of the work got done.</p>
-</div>
-<div>
-  <div class="callout" style="margin-top:0">
-    <p class="callout-l">The failure mode that matters</p>
-    <p><strong>72–91% of failures</strong> are the agent reporting success while the world state is actually wrong.</p>
-  </div>
-  <p class="tagline" style="margin-top:20px;font-size:19px">That is a self-verification gap, not a capability gap — and it is worse, because nothing raises an error.</p>
-</div>
-</div>
-
----
-
-<div class="wm">10</div>
-
 <div class="eyebrow">The instrument</div>
 
 ## Every benchmark carries systematic error
@@ -336,7 +304,7 @@ class: dense
 
 ---
 
-<div class="wm">11</div>
+<div class="wm">10</div>
 
 <div class="eyebrow">What the data says</div>
 
