@@ -150,12 +150,12 @@ class: dense
 
 <div class="pipeline" style="grid-template-columns:repeat(3,1fr);margin-top:26px">
   <div class="step">
-    <span class="step-n">1 gate · Frontier-Bench</span>
+    <span class="step-n">Single gate · Frontier-Bench</span>
     <p class="step-h">Nothing to compound</p>
     <p class="step-b">One check: does <code>pytest</code> pass? A near-miss and a clean fix score the same as long as the test goes green.</p>
   </div>
   <div class="step">
-    <span class="step-n">3 gates · FrontierCode</span>
+    <span class="step-n">Short chain · FrontierCode</span>
     <p class="step-h">Any one blocker zeroes it</p>
     <p class="step-b">Fixed · no regression · scoped — all three must clear. Nail two of three and the task still scores 0.</p>
   </div>
@@ -168,67 +168,12 @@ class: dense
 
 <div class="callout" style="margin-top:20px">
   <p class="callout-l">The math behind it</p>
-  <p>A model right <strong>95% of the time per step</strong> scores 95% on a 1-gate task, ~86% on a 3-gate task, and ~36% on a 20-step chain — same underlying reliability, wildly different numbers. Legal Agent Benchmark's 11.7% isn't a weaker model; it's more gates.</p>
+  <p>A model right <strong>95% of the time per step</strong> scores 95% on a single-gate task, ~86% on a short 3-step chain, and ~36% on a 20-step chain — same underlying reliability, wildly different numbers. Legal Agent Benchmark's 11.7% isn't a weaker model; it's a longer chain.</p>
 </div>
 
 ---
 
 <div class="wm">06</div>
-
-<div class="eyebrow">The two rules</div>
-
-## Read down.<br>Never across.
-
-<div class="rules">
-<div class="rule-card">
-  <span class="rule-n">Rule one</span>
-  <p class="rule-h">Don't compare across categories.</p>
-  <p class="rule-b">43.3% on coding and 11.7% on legal are not on the same scale. The gap says nothing about relative ability — it says the two benchmarks were built to different specifications.</p>
-</div>
-<div class="rule-card alt">
-  <span class="rule-n">Rule two</span>
-  <p class="rule-h">Compare across models on one row — if the version held.</p>
-  <p class="rule-b">Same benchmark, different models is the one valid comparison. But ARC-AGI-3 changed its scoring in April 2026; scores do not cross that line.</p>
-</div>
-</div>
-
----
-
-<div class="wm">07</div>
-
-<div class="eyebrow">Vocabulary</div>
-
-## Three ways to earn a number
-
-<div class="paradigms">
-  <div class="para">
-    <span class="para-n">1</span>
-    <span class="para-t">Binary pass / fail</span>
-    <span class="para-d">Run it. Did it work?</span>
-    <span class="para-w">Frontier-Bench · DeepSWE</span>
-  </div>
-  <div class="para">
-    <span class="para-n">2</span>
-    <span class="para-t">Efficiency ratio</span>
-    <span class="para-d">How many steps, against a human baseline?</span>
-    <span class="para-w">ARC-AGI-3</span>
-  </div>
-  <div class="para">
-    <span class="para-n">3</span>
-    <span class="para-t">Rubric</span>
-    <span class="para-d">Check a written list, item by item.</span>
-    <span class="para-w">FrontierCode · HealthBench · Legal Agent Bench</span>
-  </div>
-</div>
-
-<div class="callout">
-  <p class="callout-l">The trap</p>
-  <p>A rubric score and a pass rate are not the same kind of number. 53.4% on FrontierCode is an <strong>average rubric score</strong>; 68.8% on DeepSWE is a <strong>share of tasks solved</strong>.</p>
-</div>
-
----
-
-<div class="wm">08</div>
 
 <div class="eyebrow">Category 01</div>
 
@@ -247,7 +192,7 @@ class: dense
 
 ---
 
-<div class="wm">09</div>
+<div class="wm">07</div>
 
 <div class="eyebrow">Category 02</div>
 
@@ -285,7 +230,7 @@ class: dense
 
 ---
 
-<div class="wm">10</div>
+<div class="wm">08</div>
 
 <div class="eyebrow">Category 03</div>
 
@@ -336,7 +281,7 @@ class: dense
 
 ---
 
-<div class="wm">11</div>
+<div class="wm">09</div>
 
 <div class="eyebrow">Category 04</div>
 
@@ -365,7 +310,7 @@ class: dense
 
 ---
 
-<div class="wm">12</div>
+<div class="wm">10</div>
 
 <div class="eyebrow">Category 05</div>
 
@@ -397,7 +342,7 @@ class: dense
 
 ---
 
-<div class="wm">13</div>
+<div class="wm">11</div>
 
 <div class="eyebrow">The instrument</div>
 
@@ -437,7 +382,7 @@ class: dense
 
 ---
 
-<div class="wm">14</div>
+<div class="wm">12</div>
 
 <div class="eyebrow">What the data says</div>
 
