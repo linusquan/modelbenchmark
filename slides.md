@@ -15,7 +15,7 @@ mdc: true
 
 <div class="wm">01</div>
 
-<div class="eyebrow">A reading guide</div>
+<div class="eyebrow">Reading guide</div>
 
 # Reading the<br>Benchmark Table
 
@@ -44,42 +44,9 @@ How to interpret model evaluation scores — and what the July 2026 frontier com
 
 <div class="wm">03</div>
 
-<div class="eyebrow">Verification</div>
-
-## Cross-checking the table
-
-<p class="lede-sm" style="max-width:70ch">Anthropic ran GPT-5.6 Sol's numbers itself. Where OpenAI has published the same benchmark independently, here's what holds up.</p>
-
-<table class="table-tight">
-<thead><tr><th>Row</th><th>Anthropic reports (Sol)</th><th>Checked against</th><th>Verdict</th></tr></thead>
-<tbody>
-<tr><td>DeepSWE v1.1</td><td>72.7%</td><td>OpenAI: 72.7%</td><td class="v-ok">✓ matches</td></tr>
-<tr><td>BrowseComp</td><td>90.4%</td><td>OpenAI: 90.4% (92.2% Ultra)</td><td class="v-ok">✓ matches</td></tr>
-<tr><td>OSWorld 2.0</td><td>62.6%</td><td>OpenAI: 62.6%</td><td class="v-ok">✓ matches</td></tr>
-<tr><td>AutomationBench</td><td>18.1%</td><td>OpenAI: 18.1%</td><td class="v-ok">✓ matches</td></tr>
-<tr><td>GDPval-AA v2</td><td>1736</td><td>AA's own leaderboard: 1736</td><td class="v-ok">✓ matches — not OpenAI's own number, it's AA's</td></tr>
-<tr><td>HealthBench Pro</td><td>60.5%</td><td>OpenAI: 60.5%</td><td class="v-warn">⚠ same number — OpenAI's footnote says not comparable</td></tr>
-<tr><td>ARC-AGI-3</td><td>7.8%</td><td>OpenAI: 7.78% (official harness)</td><td class="v-warn">⚠ matches — a rival number appeared a day later, disputed¹</td></tr>
-<tr><td>Frontier-Bench / FrontierCode</td><td>34.4% / 47.5%</td><td>Not in OpenAI's table</td><td class="v-no">✕ no counterpart</td></tr>
-<tr><td>Legal Agent Benchmark</td><td>2.5%</td><td>Not published by OpenAI</td><td class="v-no">✕ no counterpart</td></tr>
-</tbody>
-</table>
-
-<div class="callout" style="margin-top:10px;padding:10px 14px">
-  <p class="callout-l" style="margin-bottom:5px">Two things the table doesn't show</p>
-  <p style="font-size:11.5px;line-height:1.42"><strong>Selective generations:</strong> OpenAI's table skips Frontier-Bench, reporting Terminal-Bench 2.1 instead — Sol 88.8%, where it leads. Same lineage, each side picked the version that favours it. <strong>A row Anthropic left out:</strong> SWE-Bench Pro, where Anthropic wins by 15+pts (Opus 4.8 69.2%, Fable 5 ~80% vs. Sol 64.6%) — though OpenAI itself has flagged ~30% of that benchmark's tasks as broken.</p>
-</div>
-
-<p class="cap" style="margin-top:8px;font-size:10px;max-width:none">5 of 9 checkable rows are clean matches. Sources: OpenAI GPT-5.6 materials · Artificial Analysis GDPval-AA v2 leaderboard.</p>
-<p class="cap" style="margin-top:2px;font-size:9px;max-width:none">¹ OpenAI, "How enabling two settings tripled our scores on the ARC-AGI-3 benchmark" (30 Jul 2026) — <a href="https://openai.com/index/how-two-settings-tripled-our-arc-agi-3-scores/">openai.com/index/how-two-settings-tripled-our-arc-agi-3-scores</a></p>
-
----
-
-<div class="wm">04</div>
-
 <div class="eyebrow">The landscape</div>
 
-## Six kinds of test
+## Six categories
 
 <p class="lede-sm" style="max-width:74ch">Every row in the table belongs to one of six categories. What a score means depends entirely on which one it came from.</p>
 
@@ -129,7 +96,7 @@ layout: default
 class: dense
 ---
 
-<div class="wm">05</div>
+<div class="wm">04</div>
 
 <div class="eyebrow">The methods</div>
 
@@ -173,7 +140,7 @@ class: dense
 
 ---
 
-<div class="wm">06</div>
+<div class="wm">05</div>
 
 <div class="eyebrow">The two rules</div>
 
@@ -194,7 +161,7 @@ class: dense
 
 ---
 
-<div class="wm">07</div>
+<div class="wm">06</div>
 
 <div class="eyebrow">Vocabulary</div>
 
@@ -228,7 +195,7 @@ class: dense
 
 ---
 
-<div class="wm">08</div>
+<div class="wm">07</div>
 
 <div class="eyebrow">Category 01</div>
 
@@ -247,7 +214,7 @@ class: dense
 
 ---
 
-<div class="wm">09</div>
+<div class="wm">08</div>
 
 <div class="eyebrow">Category 02</div>
 
@@ -285,7 +252,7 @@ class: dense
 
 ---
 
-<div class="wm">10</div>
+<div class="wm">09</div>
 
 <div class="eyebrow">Category 03</div>
 
@@ -336,7 +303,7 @@ class: dense
 
 ---
 
-<div class="wm">11</div>
+<div class="wm">10</div>
 
 <div class="eyebrow">Category 04</div>
 
@@ -365,7 +332,7 @@ class: dense
 
 ---
 
-<div class="wm">12</div>
+<div class="wm">11</div>
 
 <div class="eyebrow">Category 05</div>
 
@@ -397,7 +364,7 @@ class: dense
 
 ---
 
-<div class="wm">13</div>
+<div class="wm">12</div>
 
 <div class="eyebrow">The instrument</div>
 
@@ -437,7 +404,7 @@ class: dense
 
 ---
 
-<div class="wm">14</div>
+<div class="wm">13</div>
 
 <div class="eyebrow">What the data says</div>
 

@@ -349,41 +349,8 @@ sup{font-size:.62em;vertical-align:super}
   <!-- 03 ────────────────────────────────── -->
   <section class="slide" data-num="03">
     <div class="inner">
-      <p class="eyebrow rise">Verification</p>
-      <h2 class="rise" style="margin-bottom:.5rem;font-size:clamp(1.7rem,3.4vw,2.6rem)">Cross-checking the table</h2>
-      <p class="lede rise" style="font-size:.82rem;max-width:70ch">Anthropic ran GPT-5.6 Sol's numbers itself. Where OpenAI has published the same benchmark independently, here's what holds up.</p>
-      <div class="rise tbl-wrap" style="margin-top:.5rem">
-        <table style="font-size:.62rem">
-          <thead>
-            <tr><th style="padding-bottom:.4rem">Row</th><th style="padding-bottom:.4rem">Anthropic reports (Sol)</th><th style="padding-bottom:.4rem">Checked against</th><th style="padding-bottom:.4rem">Verdict</th></tr>
-          </thead>
-          <tbody>
-            <tr><td style="padding:.4rem 1.2rem .4rem 0">DeepSWE v1.1</td><td style="padding:.4rem 1.2rem .4rem 0">72.7%</td><td style="padding:.4rem 1.2rem .4rem 0">OpenAI: 72.7%</td><td style="padding:.4rem 1.2rem .4rem 0;color:#4B6B57;font-weight:600">✓ matches</td></tr>
-            <tr><td style="padding:.4rem 1.2rem .4rem 0">BrowseComp</td><td style="padding:.4rem 1.2rem .4rem 0">90.4%</td><td style="padding:.4rem 1.2rem .4rem 0">OpenAI: 90.4% (92.2% Ultra)</td><td style="padding:.4rem 1.2rem .4rem 0;color:#4B6B57;font-weight:600">✓ matches</td></tr>
-            <tr><td style="padding:.4rem 1.2rem .4rem 0">OSWorld 2.0</td><td style="padding:.4rem 1.2rem .4rem 0">62.6%</td><td style="padding:.4rem 1.2rem .4rem 0">OpenAI: 62.6%</td><td style="padding:.4rem 1.2rem .4rem 0;color:#4B6B57;font-weight:600">✓ matches</td></tr>
-            <tr><td style="padding:.4rem 1.2rem .4rem 0">AutomationBench</td><td style="padding:.4rem 1.2rem .4rem 0">18.1%</td><td style="padding:.4rem 1.2rem .4rem 0">OpenAI: 18.1%</td><td style="padding:.4rem 1.2rem .4rem 0;color:#4B6B57;font-weight:600">✓ matches</td></tr>
-            <tr><td style="padding:.4rem 1.2rem .4rem 0">GDPval-AA v2</td><td style="padding:.4rem 1.2rem .4rem 0">1736</td><td style="padding:.4rem 1.2rem .4rem 0">AA's own leaderboard: 1736</td><td style="padding:.4rem 1.2rem .4rem 0;color:#4B6B57;font-weight:600">✓ matches — not OpenAI's own number, it's AA's</td></tr>
-            <tr><td style="padding:.4rem 1.2rem .4rem 0">HealthBench Pro</td><td style="padding:.4rem 1.2rem .4rem 0">60.5%</td><td style="padding:.4rem 1.2rem .4rem 0">OpenAI: 60.5%</td><td style="padding:.4rem 1.2rem .4rem 0;color:var(--clay-deep);font-weight:600">⚠ matches — OpenAI's footnote says not comparable</td></tr>
-            <tr><td style="padding:.4rem 1.2rem .4rem 0">ARC-AGI-3</td><td style="padding:.4rem 1.2rem .4rem 0">7.8%</td><td style="padding:.4rem 1.2rem .4rem 0">OpenAI: 7.78% (official harness)</td><td style="padding:.4rem 1.2rem .4rem 0;color:var(--clay-deep);font-weight:600">⚠ matches — a rival number appeared a day later, disputed¹</td></tr>
-            <tr><td style="padding:.4rem 1.2rem .4rem 0">Frontier-Bench / FrontierCode</td><td style="padding:.4rem 1.2rem .4rem 0">34.4% / 47.5%</td><td style="padding:.4rem 1.2rem .4rem 0">Not in OpenAI's table</td><td style="padding:.4rem 1.2rem .4rem 0;color:var(--ink-soft);font-weight:600">✕ no counterpart</td></tr>
-            <tr><td style="padding:.4rem 1.2rem .4rem 0">Legal Agent Benchmark</td><td style="padding:.4rem 1.2rem .4rem 0">2.5%</td><td style="padding:.4rem 1.2rem .4rem 0">Not published by OpenAI</td><td style="padding:.4rem 1.2rem .4rem 0;color:var(--ink-soft);font-weight:600">✕ no counterpart</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="rise callout" style="margin-top:.5rem;padding:.55rem .9rem">
-        <p class="callout-l" style="margin-bottom:.25rem;font-size:.6rem">Two things the table doesn't show</p>
-        <p style="font-size:.66rem;line-height:1.4"><strong>Selective generations:</strong> OpenAI's table skips Frontier-Bench, reporting Terminal-Bench 2.1 instead — Sol 88.8%, where it leads. Same lineage, each side picked the version that favours it. <strong>A row Anthropic left out:</strong> SWE-Bench Pro, where Anthropic wins by 15+pts (Opus 4.8 69.2%, Fable 5 ~80% vs. Sol 64.6%) — though OpenAI itself has flagged ~30% of that benchmark's tasks as broken.</p>
-      </div>
-      <p class="rise cap" style="margin-top:.35rem;max-width:none;font-size:.62rem">5 of 9 checkable rows are clean matches. Sources: OpenAI GPT-5.6 materials · Artificial Analysis GDPval-AA v2 leaderboard.</p>
-      <p class="rise cap" style="margin-top:.1rem;font-size:.56rem;max-width:none">¹ OpenAI, "How enabling two settings tripled our scores on the ARC-AGI-3 benchmark" (30 Jul 2026) — <a href="https://openai.com/index/how-two-settings-tripled-our-arc-agi-3-scores/" style="color:var(--clay-deep)">openai.com/index/how-two-settings-tripled-our-arc-agi-3-scores</a></p>
-    </div>
-  </section>
-
-  <!-- 04 ────────────────────────────────── -->
-  <section class="slide" data-num="04">
-    <div class="inner">
       <p class="eyebrow rise">The landscape</p>
-      <h2 class="rise">Six kinds of test</h2>
+      <h2 class="rise">Six categories</h2>
       <p class="lede rise" style="max-width:74ch">Every row in the table belongs to one of six categories. What a score means depends entirely on which one it came from.</p>
 
       <div class="land rise">
@@ -429,8 +396,8 @@ sup{font-size:.62em;vertical-align:super}
     </div>
   </section>
 
-  <!-- 05 ────────────────────────────────── -->
-  <section class="slide" data-num="05">
+  <!-- 04 ────────────────────────────────── -->
+  <section class="slide" data-num="04">
     <div class="inner">
       <p class="eyebrow rise">The methods</p>
       <h2 class="rise" style="margin-bottom:.4rem">How each one is marked</h2>
@@ -473,8 +440,8 @@ sup{font-size:.62em;vertical-align:super}
     </div>
   </section>
 
-  <!-- 06 ────────────────────────────────── -->
-  <section class="slide" data-num="06">
+  <!-- 05 ────────────────────────────────── -->
+  <section class="slide" data-num="05">
     <div class="inner">
       <p class="eyebrow rise">The two rules</p>
       <h2 class="rise">Read down.<br>Never across.</h2>
@@ -493,8 +460,8 @@ sup{font-size:.62em;vertical-align:super}
     </div>
   </section>
 
-  <!-- 07 ────────────────────────────────── -->
-  <section class="slide" data-num="07">
+  <!-- 06 ────────────────────────────────── -->
+  <section class="slide" data-num="06">
     <div class="inner">
       <p class="eyebrow rise">Vocabulary</p>
       <h2 class="rise">Three ways to earn a number</h2>
@@ -525,8 +492,8 @@ sup{font-size:.62em;vertical-align:super}
     </div>
   </section>
 
-  <!-- 08 ────────────────────────────────── -->
-  <section class="slide" data-num="08">
+  <!-- 07 ────────────────────────────────── -->
+  <section class="slide" data-num="07">
     <div class="inner">
       <p class="eyebrow rise">Category 01</p>
       <h2 class="rise">Coding</h2>
@@ -561,8 +528,8 @@ sup{font-size:.62em;vertical-align:super}
     </div>
   </section>
 
-  <!-- 09 ────────────────────────────────── -->
-  <section class="slide" data-num="09">
+  <!-- 08 ────────────────────────────────── -->
+  <section class="slide" data-num="08">
     <div class="inner">
       <p class="eyebrow rise">Category 02</p>
       <h2 class="rise">Novel problem-solving</h2>
@@ -598,8 +565,8 @@ sup{font-size:.62em;vertical-align:super}
     </div>
   </section>
 
-  <!-- 10 ────────────────────────────────── -->
-  <section class="slide" data-num="10">
+  <!-- 09 ────────────────────────────────── -->
+  <section class="slide" data-num="09">
     <div class="inner">
       <p class="eyebrow rise">Category 03</p>
       <h2 class="rise" style="margin-bottom:.9rem">Knowledge work</h2>
@@ -650,8 +617,8 @@ sup{font-size:.62em;vertical-align:super}
     </div>
   </section>
 
-  <!-- 11 ────────────────────────────────── -->
-  <section class="slide" data-num="11">
+  <!-- 10 ────────────────────────────────── -->
+  <section class="slide" data-num="10">
     <div class="inner">
       <p class="eyebrow rise">Category 04</p>
       <h2 class="rise">Agentic search</h2>
@@ -677,8 +644,8 @@ sup{font-size:.62em;vertical-align:super}
     </div>
   </section>
 
-  <!-- 12 ────────────────────────────────── -->
-  <section class="slide" data-num="12">
+  <!-- 11 ────────────────────────────────── -->
+  <section class="slide" data-num="11">
     <div class="inner">
       <p class="eyebrow rise">Category 05</p>
       <h2 class="rise">Long chains,<br>no partial credit</h2>
@@ -708,8 +675,8 @@ sup{font-size:.62em;vertical-align:super}
     </div>
   </section>
 
-  <!-- 13 ────────────────────────────────── -->
-  <section class="slide" data-num="13">
+  <!-- 12 ────────────────────────────────── -->
+  <section class="slide" data-num="12">
     <div class="inner">
       <p class="eyebrow rise">The instrument</p>
       <h2 class="rise" style="margin-bottom:.7rem;font-size:clamp(1.8rem,3.6vw,2.8rem)">Every benchmark carries systematic error</h2>
@@ -744,8 +711,8 @@ sup{font-size:.62em;vertical-align:super}
     </div>
   </section>
 
-  <!-- 14 ────────────────────────────────── -->
-  <section class="slide" data-num="14">
+  <!-- 13 ────────────────────────────────── -->
+  <section class="slide" data-num="13">
     <div class="inner">
       <p class="eyebrow rise">What the data says</p>
       <h2 class="rise">Four conclusions</h2>
