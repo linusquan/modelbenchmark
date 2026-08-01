@@ -142,6 +142,39 @@ class: dense
 
 <div class="wm">05</div>
 
+<div class="eyebrow">Tolerance</div>
+
+## One mistake, different cost
+
+<p class="lede-sm" style="max-width:70ch">Coding benchmarks don't score gently because they're coding — most just test one thing per task. The real variable is how many gates a task has to clear.</p>
+
+<div class="pipeline" style="grid-template-columns:repeat(3,1fr);margin-top:26px">
+  <div class="step">
+    <span class="step-n">1 gate · Frontier-Bench</span>
+    <p class="step-h">Nothing to compound</p>
+    <p class="step-b">One check: does <code>pytest</code> pass? A near-miss and a clean fix score the same as long as the test goes green.</p>
+  </div>
+  <div class="step">
+    <span class="step-n">3 gates · FrontierCode</span>
+    <p class="step-h">Any one blocker zeroes it</p>
+    <p class="step-b">Fixed · no regression · scoped — all three must clear. Nail two of three and the task still scores 0.</p>
+  </div>
+  <div class="step">
+    <span class="step-n">Long chain · AutomationBench, Legal</span>
+    <p class="step-h">Compounding, not additive</p>
+    <p class="step-b">Flag → notify → report. Every step must land. The further the chain runs, the more a single slip costs.</p>
+  </div>
+</div>
+
+<div class="callout" style="margin-top:20px">
+  <p class="callout-l">The math behind it</p>
+  <p>A model right <strong>95% of the time per step</strong> scores 95% on a 1-gate task, ~86% on a 3-gate task, and ~36% on a 20-step chain — same underlying reliability, wildly different numbers. Legal Agent Benchmark's 11.7% isn't a weaker model; it's more gates.</p>
+</div>
+
+---
+
+<div class="wm">06</div>
+
 <div class="eyebrow">The two rules</div>
 
 ## Read down.<br>Never across.
@@ -161,7 +194,7 @@ class: dense
 
 ---
 
-<div class="wm">06</div>
+<div class="wm">07</div>
 
 <div class="eyebrow">Vocabulary</div>
 
@@ -195,7 +228,7 @@ class: dense
 
 ---
 
-<div class="wm">07</div>
+<div class="wm">08</div>
 
 <div class="eyebrow">Category 01</div>
 
@@ -214,7 +247,7 @@ class: dense
 
 ---
 
-<div class="wm">08</div>
+<div class="wm">09</div>
 
 <div class="eyebrow">Category 02</div>
 
@@ -252,7 +285,7 @@ class: dense
 
 ---
 
-<div class="wm">09</div>
+<div class="wm">10</div>
 
 <div class="eyebrow">Category 03</div>
 
@@ -303,7 +336,7 @@ class: dense
 
 ---
 
-<div class="wm">10</div>
+<div class="wm">11</div>
 
 <div class="eyebrow">Category 04</div>
 
@@ -332,7 +365,7 @@ class: dense
 
 ---
 
-<div class="wm">11</div>
+<div class="wm">12</div>
 
 <div class="eyebrow">Category 05</div>
 
@@ -364,7 +397,7 @@ class: dense
 
 ---
 
-<div class="wm">12</div>
+<div class="wm">13</div>
 
 <div class="eyebrow">The instrument</div>
 
@@ -404,7 +437,7 @@ class: dense
 
 ---
 
-<div class="wm">13</div>
+<div class="wm">14</div>
 
 <div class="eyebrow">What the data says</div>
 

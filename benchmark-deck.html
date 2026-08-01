@@ -443,6 +443,38 @@ sup{font-size:.62em;vertical-align:super}
   <!-- 05 ────────────────────────────────── -->
   <section class="slide" data-num="05">
     <div class="inner">
+      <p class="eyebrow rise">Tolerance</p>
+      <h2 class="rise">One mistake, different cost</h2>
+      <p class="lede rise" style="max-width:70ch">Coding benchmarks don't score gently because they're coding — most just test one thing per task. The real variable is how many gates a task has to clear.</p>
+
+      <div class="pipeline rise" style="grid-template-columns:repeat(3,1fr)">
+        <div class="step">
+          <span class="step-n">1 gate · Frontier-Bench</span>
+          <p class="step-h">Nothing to compound</p>
+          <p class="step-b">One check: does <code>pytest</code> pass? A near-miss and a clean fix score the same as long as the test goes green.</p>
+        </div>
+        <div class="step">
+          <span class="step-n">3 gates · FrontierCode</span>
+          <p class="step-h">Any one blocker zeroes it</p>
+          <p class="step-b">Fixed · no regression · scoped — all three must clear. Nail two of three and the task still scores 0.</p>
+        </div>
+        <div class="step">
+          <span class="step-n">Long chain · AutomationBench, Legal</span>
+          <p class="step-h">Compounding, not additive</p>
+          <p class="step-b">Flag → notify → report. Every step must land. The further the chain runs, the more a single slip costs.</p>
+        </div>
+      </div>
+
+      <div class="callout rise" style="margin-top:1.3rem">
+        <p class="callout-l">The math behind it</p>
+        <p>A model right <strong>95% of the time per step</strong> scores 95% on a 1-gate task, ~86% on a 3-gate task, and ~36% on a 20-step chain — same underlying reliability, wildly different numbers. Legal Agent Benchmark's 11.7% isn't a weaker model; it's more gates.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 ────────────────────────────────── -->
+  <section class="slide" data-num="06">
+    <div class="inner">
       <p class="eyebrow rise">The two rules</p>
       <h2 class="rise">Read down.<br>Never across.</h2>
       <div class="rules rise">
@@ -460,8 +492,8 @@ sup{font-size:.62em;vertical-align:super}
     </div>
   </section>
 
-  <!-- 06 ────────────────────────────────── -->
-  <section class="slide" data-num="06">
+  <!-- 07 ────────────────────────────────── -->
+  <section class="slide" data-num="07">
     <div class="inner">
       <p class="eyebrow rise">Vocabulary</p>
       <h2 class="rise">Three ways to earn a number</h2>
@@ -492,8 +524,8 @@ sup{font-size:.62em;vertical-align:super}
     </div>
   </section>
 
-  <!-- 07 ────────────────────────────────── -->
-  <section class="slide" data-num="07">
+  <!-- 08 ────────────────────────────────── -->
+  <section class="slide" data-num="08">
     <div class="inner">
       <p class="eyebrow rise">Category 01</p>
       <h2 class="rise">Coding</h2>
@@ -528,8 +560,8 @@ sup{font-size:.62em;vertical-align:super}
     </div>
   </section>
 
-  <!-- 08 ────────────────────────────────── -->
-  <section class="slide" data-num="08">
+  <!-- 09 ────────────────────────────────── -->
+  <section class="slide" data-num="09">
     <div class="inner">
       <p class="eyebrow rise">Category 02</p>
       <h2 class="rise">Novel problem-solving</h2>
@@ -565,8 +597,8 @@ sup{font-size:.62em;vertical-align:super}
     </div>
   </section>
 
-  <!-- 09 ────────────────────────────────── -->
-  <section class="slide" data-num="09">
+  <!-- 10 ────────────────────────────────── -->
+  <section class="slide" data-num="10">
     <div class="inner">
       <p class="eyebrow rise">Category 03</p>
       <h2 class="rise" style="margin-bottom:.9rem">Knowledge work</h2>
@@ -617,8 +649,8 @@ sup{font-size:.62em;vertical-align:super}
     </div>
   </section>
 
-  <!-- 10 ────────────────────────────────── -->
-  <section class="slide" data-num="10">
+  <!-- 11 ────────────────────────────────── -->
+  <section class="slide" data-num="11">
     <div class="inner">
       <p class="eyebrow rise">Category 04</p>
       <h2 class="rise">Agentic search</h2>
@@ -644,8 +676,8 @@ sup{font-size:.62em;vertical-align:super}
     </div>
   </section>
 
-  <!-- 11 ────────────────────────────────── -->
-  <section class="slide" data-num="11">
+  <!-- 12 ────────────────────────────────── -->
+  <section class="slide" data-num="12">
     <div class="inner">
       <p class="eyebrow rise">Category 05</p>
       <h2 class="rise">Long chains,<br>no partial credit</h2>
@@ -675,8 +707,8 @@ sup{font-size:.62em;vertical-align:super}
     </div>
   </section>
 
-  <!-- 12 ────────────────────────────────── -->
-  <section class="slide" data-num="12">
+  <!-- 13 ────────────────────────────────── -->
+  <section class="slide" data-num="13">
     <div class="inner">
       <p class="eyebrow rise">The instrument</p>
       <h2 class="rise" style="margin-bottom:.7rem;font-size:clamp(1.8rem,3.6vw,2.8rem)">Every benchmark carries systematic error</h2>
@@ -711,8 +743,8 @@ sup{font-size:.62em;vertical-align:super}
     </div>
   </section>
 
-  <!-- 13 ────────────────────────────────── -->
-  <section class="slide" data-num="13">
+  <!-- 14 ────────────────────────────────── -->
+  <section class="slide" data-num="14">
     <div class="inner">
       <p class="eyebrow rise">What the data says</p>
       <h2 class="rise">Four conclusions</h2>
