@@ -480,23 +480,20 @@ sup{font-size:.62em;vertical-align:super}
       <div class="rise tbl-wrap">
         <table>
           <thead>
-            <tr><th>Benchmark</th><th>Example task</th><th>Scored by</th></tr>
+            <tr><th>Benchmark</th><th>Example task</th></tr>
           </thead>
           <tbody>
             <tr>
               <td>Frontier-Bench</td>
-              <td>"The DB migration is broken — get <code>pytest</code> passing." Full shell access.</td>
-              <td>Harness re-runs the check itself. Binary, mean over 5 runs.</td>
+              <td><strong>Full shell, no scaffolding.</strong> "Production deploy is broken — SSH in, find what regressed, get the health check green again."</td>
             </tr>
             <tr>
               <td>DeepSWE</td>
-              <td>"Add exponential-backoff retry: 1s/2s/4s/8s/16s, then fail." Written from scratch to resist contamination.</td>
-              <td>Hand-written test asserts real retry behaviour. Binary.</td>
+              <td><strong>Invented, not an adapted PR.</strong> "Implement a token-bucket rate limiter with three custom edge cases" — no existing GitHub fix to recall.</td>
             </tr>
             <tr>
               <td>FrontierCode</td>
-              <td>"Fix a race condition in the job queue."</td>
-              <td><strong>Blockers</strong> (fixed · no regression · scoped) are gates — miss one and the task scores 0. Style and quality are LLM-reviewed and weighted in after.</td>
+              <td><strong>Judged, not just run.</strong> "Fix a race condition in the job queue" — a blanket lock 'solves' it but fails the no-regression and scope gates.</td>
             </tr>
           </tbody>
         </table>

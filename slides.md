@@ -179,11 +179,11 @@ class: dense
 
 ## Coding
 
-| Benchmark | Example task | Scored by |
-|---|---|---|
-| Frontier-Bench | "The DB migration is broken — get `pytest` passing." Full shell access. | Harness re-runs the check itself. Binary, mean over 5 runs. |
-| DeepSWE | "Add exponential-backoff retry: 1s/2s/4s/8s/16s, then fail." Written from scratch to resist contamination. | Hand-written test asserts real retry behaviour. Binary. |
-| FrontierCode | "Fix a race condition in the job queue." | **Blockers** (fixed · no regression · scoped) are gates — miss one and the task scores 0. Style and quality are LLM-reviewed and weighted in after. |
+| Benchmark | Example task |
+|---|---|
+| Frontier-Bench | **Full shell, no scaffolding.** "Production deploy is broken — SSH in, find what regressed, get the health check green again." |
+| DeepSWE | **Invented, not an adapted PR.** "Implement a token-bucket rate limiter with three custom edge cases" — no existing GitHub fix to recall. |
+| FrontierCode | **Judged, not just run.** "Fix a race condition in the job queue" — a blanket lock 'solves' it but fails the no-regression and scope gates. |
 
 <div class="callout">
   <p class="callout-l">The hidden variable</p>
